@@ -7,6 +7,9 @@
       <Filter>view</Filter>
     </ClCompile>
     <ClCompile Include="global.cpp" />
+    <ClCompile Include="View\vprogview.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -14,6 +17,9 @@
       <Filter>view</Filter>
     </ClInclude>
     <ClInclude Include="global.h" />
+    <ClInclude Include="View\vprogview.h">
+      <Filter>view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="view">

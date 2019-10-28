@@ -16,7 +16,10 @@ public:
 	virtual void OnRender(const float deltaSeconds) override;
 
 
-public:
+protected:
 	void RenderSimpleNode();
 	void RenderBlueprint();
+
+
+public:
 };

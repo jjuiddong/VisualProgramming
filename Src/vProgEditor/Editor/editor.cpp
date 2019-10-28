@@ -1,9 +1,9 @@
 //
-// Visual Programming Editor
+// Visual Programming Editor (vProg)
 //
 #include "stdafx.h"
 #include "view/editorview.h"
-//#include "view/infoview.h"
+#include "view/vprogview.h"
 
 
 class cViewer : public framework::cGameMain2
@@ -30,7 +30,7 @@ cViewer::cViewer()
 {
 	graphic::cResourceManager::Get()->SetMediaDirectory("./media/");
 
-	m_windowName = L"vProg Editor";
+	m_windowName = L"Visual Programming Editor";
 	m_isLazyMode = true;
 	const RECT r = { 0, 0, 1024, 768 };
 	//const RECT r = { 0, 0, 1280, 960 };
@@ -67,18 +67,19 @@ bool cViewer::OnInit()
 	m_gui.SetContext();
 
 	g_global = new cGlobal();
-	g_global->Init(m_hWnd);
+	g_global->Init(m_hWnd, m_renderer);
 
 	bool result = false;
-	cEditorView *cmdView = new cEditorView("Editor");
-	cmdView->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, NULL);
-	result = cmdView->Init(m_renderer);
+	cEditorView *editorView = new cEditorView("Editor");
+	editorView->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, NULL);
+	result = editorView->Init(m_renderer);
 	assert(result);
 
-	//c3DView *view = new c3DView("3D Map");
-	//view->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, NULL);
-	//bool result = view->Init(m_renderer);
-	//assert(result);
+	cVProgView *vprogView = new cVProgView("VProg");
+	vprogView->Create(eDockState::DOCKWINDOW, eDockSlot::RIGHT, this, editorView, 0.25f
+		, framework::eDockSizingOption::PIXEL);
+	result = vprogView->Init(m_renderer);
+	assert(result);
 
 	//cInfoView *infoView = new cInfoView("Information");
 	//infoView->Create(eDockState::DOCKWINDOW, eDockSlot::RIGHT, this, view, 0.25f
@@ -86,8 +87,8 @@ bool cViewer::OnInit()
 	//result = infoView->Init();
 	//assert(result);
 
-	//g_global->m_3dView = view;
-	//g_global->m_infoView = infoView;
+	g_global->m_editView = editorView;
+	g_global->m_vprogView = vprogView;
 
 	m_gui.SetContext();
 	m_gui.SetStyleColorsDark();

@@ -1,0 +1,259 @@
+state
+	type Function
+	id 10008
+	name "InputAction Fire"
+	rect -252 220 -83 324
+	color 1 0.501961 0.501961 1
+	output
+		type Delegate
+		id 10009
+		name " "
+		links 
+	output
+		type Flow
+		id 10010
+		name "Pressed"
+		links 10028 
+	output
+		type Flow
+		id 10011
+		name "Released"
+		links 
+state
+	type Function
+	id 10012
+	name "Branch"
+	rect -300 351 -59 455
+	color 1 1 1 1
+	input
+		type Flow
+		id 10013
+		name " "
+		links 
+	input
+		type Bool
+		id 10014
+		name "Condition"
+		links 
+	output
+		type Flow
+		id 10015
+		name "True"
+		links 
+	output
+		type Flow
+		id 10016
+		name "False"
+		links 
+state
+	type Function
+	id 10017
+	name "Do N"
+	rect -238 504 -51 636
+	color 1 1 1 1
+	input
+		type Flow
+		id 10018
+		name "Enter"
+		links 
+	input
+		type Int
+		id 10019
+		name "N"
+		links 
+	input
+		type Flow
+		id 10020
+		name "Reset"
+		links 
+	output
+		type Flow
+		id 10021
+		name "Exit"
+		links 
+	output
+		type Int
+		id 10022
+		name "Counter"
+		links 
+state
+	type Function
+	id 10023
+	name "OutputAction"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Float
+		id 10024
+		name "Sample"
+		links 
+	input
+		type Delegate
+		id 10026
+		name "Event"
+		links 
+	output
+		type Bool
+		id 10025
+		name "Condition"
+		links 
+state
+	type Function
+	id 10027
+	name "Set Timer"
+	rect 168 316 360 504
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		id 10028
+		name " "
+		links 10028 
+	input
+		type Object
+		id 10029
+		name "Object"
+		links 
+	input
+		type Function
+		id 10030
+		name "Function Name"
+		links 
+	input
+		type Float
+		id 10031
+		name "Time"
+		links 
+	input
+		type Bool
+		id 10032
+		name "Looping"
+		links 
+	output
+		type Flow
+		id 10033
+		name " "
+		links 
+state
+	type Tree
+	id 10034
+	name "Sequence"
+	rect 1028 329 1028 329
+	color 1 1 1 1
+	input
+		type Flow
+		id 10035
+		name " "
+		links 
+	output
+		type Flow
+		id 10036
+		name " "
+		links 
+state
+	type Tree
+	id 10037
+	name "Move To"
+	rect 1204 458 1204 458
+	color 1 1 1 1
+	input
+		type Flow
+		id 10038
+		name " "
+		links 
+state
+	type Tree
+	id 10039
+	name "Random Wait"
+	rect 868 538 868 538
+	color 1 1 1 1
+	input
+		type Flow
+		id 10040
+		name " "
+		links 
+state
+	type Comment
+	id 10041
+	name "Test Comment"
+	rect 112 576 112 576
+	color 1 1 1 1
+state
+	type Comment
+	id 10042
+	name "Test Comment"
+	rect 800 224 800 224
+	color 1 1 1 1
+state
+	type Operator
+	id 10043
+	name "<"
+	rect 366 652 470 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		id 10044
+		name " "
+		links 
+	input
+		type Float
+		id 10045
+		name " "
+		links 
+	output
+		type Float
+		id 10046
+		name " "
+		links 
+state
+	type Operator
+	id 10047
+	name "o.O"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		id 10048
+		name " "
+		links 
+	output
+		type Float
+		id 10049
+		name " "
+		links 
+	output
+		type Float
+		id 10050
+		name " "
+		links 
+state
+	type Variable
+	id 10051
+	name " "
+	rect -348 698 -115 742
+	color 0.501961 0.764706 0.972549 1
+	output
+		type String
+		id 10052
+		name "Message"
+		links 
+state
+	type Function
+	id 10053
+	name "Print String"
+	rect -69 652 78 756
+	color 1 1 1 1
+	input
+		type Flow
+		id 10054
+		name " "
+		links 
+	input
+		type String
+		id 10055
+		name "In String"
+		links 
+	output
+		type Flow
+		id 10056
+		name " "
+		links 

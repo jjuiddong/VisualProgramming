@@ -161,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="View\editorview.cpp" />
+    <ClCompile Include="View\vprogview.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Common\Common\Common.vcxproj">
@@ -180,6 +181,7 @@
     <ClInclude Include="global.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="View\editorview.h" />
+    <ClInclude Include="View\vprogview.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

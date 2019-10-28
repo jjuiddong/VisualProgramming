@@ -10,3 +10,5 @@ using common::Vector3;
 
 #include "global.h"
 extern cGlobal *g_global;
+
+namespace vprog = framework::vprog;
