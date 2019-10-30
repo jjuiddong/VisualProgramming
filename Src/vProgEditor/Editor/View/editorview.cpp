@@ -19,6 +19,9 @@ cEditorView::~cEditorView()
 
 bool cEditorView::Init(cRenderer &renderer)
 {
+	common::script::cIntermediateCode code;
+	code.Read("intermediate-lang.txt");
+
 	return true;
 }
 

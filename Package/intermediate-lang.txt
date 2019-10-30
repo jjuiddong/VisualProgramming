@@ -1,0 +1,32 @@
+
+# script intermediate language sample
+#	- glue function
+#	- glue variable
+
+Event_SeqWork:
+geti Event_SeqWork, Loading, val0
+seti GetFrontNode, node, val0
+call GetFrontNode
+geti GetFrontNode, front, val0
+seti ReqMove, Dest, val0
+call ReqMove
+geti ReqMove, Result, val0
+eqic val0, 0
+jnz jump1
+jmp jump2
+end
+
+jump1:
+geti Event_Seqwork, Loading, val0
+seti ReqLoading, station, val0
+geti Event_Seqwork, lLayer, val1
+seti ReqLoading, lLayer, val1
+call ReqLoading
+end
+
+jump2:
+geti ReqMove, Result, val0
+seti ErrorState, errorCode, val0
+call ErrorState
+end
+

@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 Package/errlog.txt
 Package/log.txt
+Package/imgui.ini
