@@ -1,0 +1,324 @@
+node
+	type Event
+	name "InputAction Fire"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Delegate
+		name " "
+	output
+		type Flow
+		name "Pressed"
+	output
+		type Flow
+		name "Released"
+node
+	type Event
+	name "SeqWork Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type Int
+		name "Loading"
+	output
+		type Int
+		name "l Layer"
+	output
+		type Int
+		name "Picking"
+	output
+		type Int
+		name "Unloading"
+	output
+		type Int
+		name "u Layer"
+node
+	type Control
+	name "Branch"
+	rect -360 336 -119 440
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Bool
+		name "Condition"
+	output
+		type Flow
+		name "True"
+	output
+		type Flow
+		name "False"
+node
+	type Control
+	name "While"
+	rect -360 336 -119 440
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Bool
+		name "Condition"
+	output
+		type Flow
+		name "Exit"
+	output
+		type Flow
+		name "Loop"
+node
+	type Control
+	name "Do N"
+	rect -323 500 -136 632
+	color 1 1 1 1
+	input
+		type Flow
+		name "Enter"
+	input
+		type Int
+		name "N"
+	input
+		type Flow
+		name "Reset"
+	output
+		type Flow
+		name "Exit"
+	output
+		type Int
+		name "Counter"
+node
+	type Function
+	name "GetFrontNode"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Int
+		name "Node"
+	output
+		type Int
+		name "Front"
+node
+	type Function
+	name "ReqMove"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "Dest"
+	output
+		type Flow
+		name " "
+	output
+		type Int
+		name "Result"
+	output
+		type Int
+		name "Dest"
+node
+	type Function
+	name "ReqGuideMove"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "Dest"
+	input
+		type Int
+		name "Direction"
+	output
+		type Flow
+		name " "
+	output
+		type Int
+		name "Result"
+	output
+		type Int
+		name "Dest"
+node
+	type Function
+	name "ReqLoading"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "Station"
+	input
+		type Int
+		name "Layer"
+	output
+		type Flow
+		name " "
+	output
+		type Int
+		name "Result"
+	output
+		type Int
+		name "Station"		
+	output
+		type Int
+		name "Layer"
+node
+	type Function
+	name "ReqUnloading"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "Station"
+	input
+		type Int
+		name "Layer"
+	output
+		type Flow
+		name " "
+	output
+		type Int
+		name "Result"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+node
+	type Function
+	name "ErrorState"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "ErrorCode"
+	output
+		type Flow
+		name " "
+node
+	type Function
+	name "OutputAction"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Float
+		name "Sample"
+	input
+		type Delegate
+		name "Event"
+	output
+		type Bool
+		name "Condition"
+node
+	type Function
+	name "Set Timer"
+	rect 168 316 360 504
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type Object
+		name "Object"
+	input
+		type Function
+		name "Function Name"
+	input
+		type Float
+		name "Time"
+	input
+		type Bool
+		name "Looping"
+	output
+		type Flow
+		name " "
+node
+	type Operator
+	name "<"
+	rect 366 652 470 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name " "
+	input
+		type Float
+		name " "
+	output
+		type Bool
+		name " "
+node
+	type Operator
+	name "o.O"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name " "
+	output
+		type Float
+		name " "
+	output
+		type Float
+		name " "
+node
+	type Function
+	name "Print String"
+	rect -69 652 78 756
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "In String"
+	output
+		type Flow
+		name " "
+node
+	type Variable
+	name "Int"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type Int
+		name " "
+node
+	type Variable
+	name "Bool"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type Bool
+		name " "
+node
+	type Variable
+	name "Float"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type Float
+		name " "
+node
+	type Variable
+	name "String"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type String
+		name " "
+
+

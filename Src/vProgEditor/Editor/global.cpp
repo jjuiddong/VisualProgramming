@@ -18,13 +18,7 @@ string GetConfigFileNameFromCommandLine()
 
 cGlobal::cGlobal()
 	: m_config(GetConfigFileNameFromCommandLine())
-//	, m_guiMgr(NULL)
-//	, m_dbgVisualizer(NULL)
 {
-	//m_map.m_textSize = 0.15f;
-	//m_map.m_textOffsetY = 0.3f;
-	//m_map.m_vertexSize = 0.1f;
-	//m_map.m_showNodeName = false;
 }
 
 cGlobal::~cGlobal()
@@ -40,54 +34,42 @@ bool cGlobal::Init(HWND hWnd, graphic::cRenderer &renderer)
 	namespace ed = ax::NodeEditor;
 
 	m_editMgr.Init(renderer);
-	m_editMgr.ReadDefinitionFile("function_definition.txt");
+	m_editMgr.ReadDefinitionFile("vprog_definition.txt");
 	ed::SetCurrentEditor(m_editMgr.m_editor);
 
 	if (0)
 	{
-		vprog::cNode* node;
-		node = m_editMgr.Generate_InputActionNode();      ed::SetNodePosition(node->m_id, ImVec2(-252, 220));
-		node = m_editMgr.Generate_BranchNode();           ed::SetNodePosition(node->m_id, ImVec2(-300, 351));
-		node = m_editMgr.Generate_DoNNode();              ed::SetNodePosition(node->m_id, ImVec2(-238, 504));
-		node = m_editMgr.Generate_OutputActionNode();     ed::SetNodePosition(node->m_id, ImVec2(71, 80));
-		node = m_editMgr.Generate_SetTimerNode();         ed::SetNodePosition(node->m_id, ImVec2(168, 316));
+		//vprog::cNode* node;
+		//node = m_editMgr.Generate_InputActionNode();      ed::SetNodePosition(node->m_id, ImVec2(-252, 220));
+		//node = m_editMgr.Generate_BranchNode();           ed::SetNodePosition(node->m_id, ImVec2(-300, 351));
+		//node = m_editMgr.Generate_DoNNode();              ed::SetNodePosition(node->m_id, ImVec2(-238, 504));
+		//node = m_editMgr.Generate_OutputActionNode();     ed::SetNodePosition(node->m_id, ImVec2(71, 80));
+		//node = m_editMgr.Generate_SetTimerNode();         ed::SetNodePosition(node->m_id, ImVec2(168, 316));
 
-		node = m_editMgr.Generate_TreeSequenceNode();     ed::SetNodePosition(node->m_id, ImVec2(1028, 329));
-		node = m_editMgr.Generate_TreeTaskNode();         ed::SetNodePosition(node->m_id, ImVec2(1204, 458));
-		node = m_editMgr.Generate_TreeTask2Node();        ed::SetNodePosition(node->m_id, ImVec2(868, 538));
+		//node = m_editMgr.Generate_TreeSequenceNode();     ed::SetNodePosition(node->m_id, ImVec2(1028, 329));
+		//node = m_editMgr.Generate_TreeTaskNode();         ed::SetNodePosition(node->m_id, ImVec2(1204, 458));
+		//node = m_editMgr.Generate_TreeTask2Node();        ed::SetNodePosition(node->m_id, ImVec2(868, 538));
 
-		node = m_editMgr.Generate_Comment();              ed::SetNodePosition(node->m_id, ImVec2(112, 576));
-		node = m_editMgr.Generate_Comment();              ed::SetNodePosition(node->m_id, ImVec2(800, 224));
+		//node = m_editMgr.Generate_Comment();              ed::SetNodePosition(node->m_id, ImVec2(112, 576));
+		//node = m_editMgr.Generate_Comment();              ed::SetNodePosition(node->m_id, ImVec2(800, 224));
 
-		node = m_editMgr.Generate_LessNode();             ed::SetNodePosition(node->m_id, ImVec2(366, 652));
-		node = m_editMgr.Generate_WeirdNode();            ed::SetNodePosition(node->m_id, ImVec2(144, 652));
-		node = m_editMgr.Generate_MessageNode();          ed::SetNodePosition(node->m_id, ImVec2(-348, 698));
-		node = m_editMgr.Generate_PrintStringNode();      ed::SetNodePosition(node->m_id, ImVec2(-69, 652));
+		//node = m_editMgr.Generate_LessNode();             ed::SetNodePosition(node->m_id, ImVec2(366, 652));
+		//node = m_editMgr.Generate_WeirdNode();            ed::SetNodePosition(node->m_id, ImVec2(144, 652));
+		//node = m_editMgr.Generate_MessageNode();          ed::SetNodePosition(node->m_id, ImVec2(-348, 698));
+		//node = m_editMgr.Generate_PrintStringNode();      ed::SetNodePosition(node->m_id, ImVec2(-69, 652));
 
-		m_editMgr.BuildNodes();
+		//m_editMgr.BuildNodes();
 
-		//s_SaveIcon = ImGui_LoadTexture("Data/ic_save_white_24dp.png");
-		//s_RestoreIcon = ImGui_LoadTexture("Data/ic_restore_white_24dp.png");
+		////s_SaveIcon = ImGui_LoadTexture("Data/ic_save_white_24dp.png");
+		////s_RestoreIcon = ImGui_LoadTexture("Data/ic_restore_white_24dp.png");
 
-		framework::vprog::cNode &from = m_editMgr.m_nodes[0];
-		framework::vprog::cNode &to1 = m_editMgr.m_nodes[4];
-		framework::vprog::cNode &to2 = m_editMgr.m_nodes[7];
-		m_editMgr.AddLink(from.m_outputs[1].id, to1.m_inputs[0].id);
+		//framework::vprog::cNode &from = m_editMgr.m_nodes[0];
+		//framework::vprog::cNode &to1 = m_editMgr.m_nodes[4];
+		//framework::vprog::cNode &to2 = m_editMgr.m_nodes[7];
+		//m_editMgr.AddLink(from.m_outputs[1].id, to1.m_inputs[0].id);
 		//m_editMgr.AddLink(from.m_outputs[0].id, to2.m_inputs[0].id);
 	}
 
-	//m_map.Init(renderer);
-	//m_map.m_showInfluenceMap = true;
-
-	//const string mapFileName = m_config.GetString("map-filename");
-	//const string scenarioFileName = m_config.GetString("scenario-filename");
-	//if (!m_map.ReadPathFile(mapFileName, scenarioFileName))
-	//{
-	//	::MessageBoxA(hWnd, "Read Map Error", "Error", MB_OK);
-	//	return false;
-	//}
-
-	//m_textMgr.Create(512, 512);
 	return true;
 }
 
@@ -96,12 +78,6 @@ bool cGlobal::Init(HWND hWnd, graphic::cRenderer &renderer)
 // cGuiManager, DebugVisualizer 를 생성한다.
 bool cGlobal::InitRemoteDebugger()
 {
-	//m_guiMgr = new scene::cGuiManager();
-	//m_guiMgr->Init((framework::cDockWindow*)m_cmdView);
-
-	//m_dbgVisualizer = new scene::cDebugVisualizer();
-	//m_dbgVisualizer->Init((framework::cDockWindow*)m_cmdView, &m_remoteDebugger);
-
 	return true;
 }
 

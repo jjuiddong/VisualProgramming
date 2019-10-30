@@ -75,17 +75,11 @@ bool cViewer::OnInit()
 	result = editorView->Init(m_renderer);
 	assert(result);
 
-	cVProgView *vprogView = new cVProgView("VProg");
+	cVProgView *vprogView = new cVProgView("Command");
 	vprogView->Create(eDockState::DOCKWINDOW, eDockSlot::RIGHT, this, editorView, 0.25f
 		, framework::eDockSizingOption::PIXEL);
 	result = vprogView->Init(m_renderer);
 	assert(result);
-
-	//cInfoView *infoView = new cInfoView("Information");
-	//infoView->Create(eDockState::DOCKWINDOW, eDockSlot::RIGHT, this, view, 0.25f
-	//	, framework::eDockSizingOption::PIXEL);
-	//result = infoView->Init();
-	//assert(result);
 
 	g_global->m_editView = editorView;
 	g_global->m_vprogView = vprogView;
