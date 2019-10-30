@@ -8,4 +8,4 @@ Visual Programming(vProg) with VS2017 C++, ImGui, imgui-node-editor
 - Remote Debugger (not yet)
 - Debug Visualizer (not yet)
 
-![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/screenshot2.jpg?raw=true)
+![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/screenshot3.jpg?raw=true)
