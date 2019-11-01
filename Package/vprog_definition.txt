@@ -90,7 +90,7 @@ node
 		type Int
 		name "Counter"
 node
-	type Function
+	type Macro
 	name "GetFrontNode"
 	rect 71 80 280 184
 	color 1 1 1 1

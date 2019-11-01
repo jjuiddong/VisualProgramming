@@ -1,387 +1,371 @@
 node
-	type Function
-	id 10008
-	name "GetFrontNode"
-	rect -237 -80 -72 -4
-	color 1 1 1 1
-	input
-		type Int
-		id 10009
-		name "node"
-		links 10009 
+	type Event
+	id 10248
+	name "SeqWork Event"
+	rect -686 -76 -553 140
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10249
+		name " "
+		links 10256 
 	output
 		type Int
-		id 10010
-		name "front"
-		links 10021 
+		id 10250
+		name "Loading"
+		links 10263 10043 
+	output
+		type Int
+		id 10251
+		name "l Layer"
+		links 10044 
+	output
+		type Int
+		id 10252
+		name "Picking"
+		links 
+	output
+		type Int
+		id 10253
+		name "Unloading"
+		links 
+	output
+		type Int
+		id 10254
+		name "u Layer"
+		links 
 node
 	type Function
-	id 10019
+	id 10255
 	name "ReqMove"
-	rect -32 -152 136 -20
+	rect -209 -32 -41 100
 	color 1 1 1 1
 	input
 		type Flow
-		id 10020
+		id 10256
 		name " "
-		links 10020 
+		links 10249 
 	input
 		type Int
-		id 10021
+		id 10257
 		name "Dest"
-		links 10021 
+		links 10264 
 	output
 		type Flow
-		id 10022
+		id 10258
 		name " "
-		links 10070 
+		links 10035 
 	output
 		type Int
-		id 10023
+		id 10259
 		name "Result"
-		links 10186 
+		links 10052 
 	output
 		type Int
-		id 10024
+		id 10260
 		name "Dest"
 		links 
 node
-	type Function
-	id 10032
-	name "ReqGuideMove"
-	rect 536 28 732 160
+	type Macro
+	id 10262
+	name "GetFrontNode"
+	rect -457 24 -288 100
+	color 1 1 1 1
+	input
+		type Int
+		id 10263
+		name "Node"
+		links 10250 
+	output
+		type Int
+		id 10264
+		name "Front"
+		links 10257 
+node
+	type Variable
+	id 10014
+	name "Bool"
+	varname "Cond1"
+	rect -174 152 -57 196
+	color 1 1 1 1
+	output
+		type Bool
+		id 10015
+		name " "
+		links 10036 
+node
+	type Control
+	id 10034
+	name "Branch"
+	rect 39 28 280 132
 	color 1 1 1 1
 	input
 		type Flow
-		id 10033
-		name " "
-		links 10033 
-	input
-		type Int
-		id 10034
-		name "Dest"
-		links 10034 
-	input
-		type Int
 		id 10035
-		name "Direction"
-		links 
+		name " "
+		links 10258 
+	input
+		type Bool
+		id 10036
+		name "Condition"
+		links 10015 
 	output
 		type Flow
-		id 10036
-		name " "
-		links 10083 
-	output
-		type Int
 		id 10037
-		name "Result"
-		links 
+		name "True"
+		links 10042 
 	output
-		type Int
+		type Flow
 		id 10038
-		name "Dest"
-		links 
+		name "False"
+		links 10051 
 node
 	type Function
-	id 10040
+	id 10041
 	name "ReqLoading"
-	rect 1194 168 1384 328
+	rect 362 144 552 304
 	color 1 1 1 1
 	input
 		type Flow
-		id 10041
-		name " "
-		links 10041 
-	input
-		type Int
 		id 10042
-		name "Station"
-		links 10042 
+		name " "
+		links 10037 
 	input
 		type Int
 		id 10043
+		name "Station"
+		links 10250 
+	input
+		type Int
+		id 10044
 		name "Layer"
-		links 
+		links 10251 
 	output
 		type Flow
-		id 10044
-		name " "
-		links 10090 
-	output
-		type Int
 		id 10045
-		name "Result"
-		links 
+		name " "
+		links 10059 
 	output
 		type Int
 		id 10046
+		name "Result"
+		links 10350 
+	output
+		type Int
+		id 10047
 		name "Station"
 		links 
 	output
 		type Int
-		id 10047
+		id 10048
 		name "Layer"
 		links 
 node
 	type Function
-	id 10049
-	name "ReqUnloading"
-	rect 1880 344 2070 504
+	id 10050
+	name "ErrorState"
+	rect 392 -84 562 20
 	color 1 1 1 1
 	input
 		type Flow
-		id 10050
-		name " "
-		links 10050 
-	input
-		type Int
 		id 10051
-		name "Station"
-		links 10051 
+		name " "
+		links 10038 
 	input
 		type Int
 		id 10052
-		name "Layer"
-		links 10052 
+		name "ErrorCode"
+		links 10259 
 	output
 		type Flow
 		id 10053
 		name " "
 		links 
+node
+	type Control
+	id 10058
+	name "Branch"
+	rect 624 228 865 332
+	color 1 1 1 1
+	input
+		type Flow
+		id 10059
+		name " "
+		links 10045 
+	input
+		type Bool
+		id 10060
+		name "Condition"
+		links 10065 
+	output
+		type Flow
+		id 10061
+		name "True"
+		links 10092 
+	output
+		type Flow
+		id 10062
+		name "False"
+		links 10349 
+node
+	type Variable
+	id 10064
+	name "Bool"
+	varname "Cond2"
+	rect 451 348 568 392
+	color 1 1 1 1
+	output
+		type Bool
+		id 10065
+		name " "
+		links 10060 
+node
+	type Function
+	id 10091
+	name "ReqMove"
+	rect 944 308 1112 440
+	color 1 1 1 1
+	input
+		type Flow
+		id 10092
+		name " "
+		links 10061 
+	input
+		type Int
+		id 10093
+		name "Dest"
+		links 
+	output
+		type Flow
+		id 10094
+		name " "
+		links 10340 
 	output
 		type Int
-		id 10054
+		id 10095
 		name "Result"
 		links 
 	output
 		type Int
-		id 10055
+		id 10096
+		name "Dest"
+		links 
+node
+	type Function
+	id 10339
+	name "ReqUnloading"
+	rect 1216 376 1406 536
+	color 1 1 1 1
+	input
+		type Flow
+		id 10340
+		name " "
+		links 10094 
+	input
+		type Int
+		id 10341
+		name "Station"
+		links 
+	input
+		type Int
+		id 10342
+		name "Layer"
+		links 
+	output
+		type Flow
+		id 10343
+		name " "
+		links 
+	output
+		type Int
+		id 10344
+		name "Result"
+		links 
+	output
+		type Int
+		id 10345
 		name "Station"
 		links 
 	output
 		type Int
-		id 10056
+		id 10346
 		name "Layer"
 		links 
 node
-	type Event
-	id 10058
-	name "SeqWork Event"
-	rect -461 -240 -328 -24
-	color 1 0.501961 0.501961 1
-	output
-		type Flow
-		id 10059
-		name " "
-		links 10020 
-	output
-		type Int
-		id 10060
-		name "Loading"
-		links 10009 10034 10042 
-	output
-		type Int
-		id 10061
-		name "l Layer"
-		links 
-	output
-		type Int
-		id 10062
-		name "Picking"
-		links 
-	output
-		type Int
-		id 10063
-		name "Unloading"
-		links 10051 
-	output
-		type Int
-		id 10064
-		name "u Layer"
-		links 10052 
-node
-	type Control
-	id 10069
-	name "Branch"
-	rect 232 -80 473 24
-	color 1 1 1 1
-	input
-		type Flow
-		id 10070
-		name " "
-		links 10070 
-	input
-		type Bool
-		id 10071
-		name "Condition"
-		links 10071 
-	output
-		type Flow
-		id 10072
-		name "True"
-		links 10033 
-	output
-		type Flow
-		id 10073
-		name "False"
-		links 10185 
-node
-	type Control
-	id 10082
-	name "Branch"
-	rect 840 96 1081 200
-	color 1 1 1 1
-	input
-		type Flow
-		id 10083
-		name " "
-		links 10083 
-	input
-		type Bool
-		id 10084
-		name "Condition"
-		links 10084 
-	output
-		type Flow
-		id 10085
-		name "True"
-		links 10041 
-	output
-		type Flow
-		id 10086
-		name "False"
-		links 
-node
-	type Control
-	id 10089
-	name "Branch"
-	rect 1511 260 1752 364
-	color 1 1 1 1
-	input
-		type Flow
-		id 10090
-		name " "
-		links 10090 
-	input
-		type Bool
-		id 10091
-		name "Condition"
-		links 
-	output
-		type Flow
-		id 10092
-		name "True"
-		links 10050 
-	output
-		type Flow
-		id 10093
-		name "False"
-		links 
-node
-	type Variable
-	id 10177
-	name "Bool"
-	varname "Cond1"
-	rect 65 32 182 76
-	color 1 1 1 1
-	output
-		type Bool
-		id 10178
-		name " "
-		links 10071 
-node
 	type Function
-	id 10184
+	id 10348
 	name "ErrorState"
-	rect 574 -188 744 -84
+	rect 944 104 1114 208
 	color 1 1 1 1
 	input
 		type Flow
-		id 10185
+		id 10349
 		name " "
-		links 10185 
+		links 10062 
 	input
 		type Int
-		id 10186
+		id 10350
 		name "ErrorCode"
-		links 10186 
+		links 10046 
 	output
 		type Flow
-		id 10187
+		id 10351
 		name " "
 		links 
+node
+	type Variable
+	id 10057
+	name "String"
+	varname "String"
+	rect -516 312 -296 356
+	color 1 1 1 1
+	output
+		type String
+		id 10063
+		name " "
+		links 10172 
+node
+	type Variable
+	id 10066
+	name "String"
+	varname "String"
+	rect -516 376 -296 420
+	color 1 1 1 1
+	output
+		type String
+		id 10067
+		name " "
+		links 10172 
 node
 	type Function
-	id 10200
+	id 10170
 	name "Print String"
-	rect 89 144 248 248
+	rect -215 256 -56 360
 	color 1 1 1 1
 	input
 		type Flow
-		id 10201
+		id 10171
 		name " "
 		links 
 	input
 		type String
-		id 10202
+		id 10172
 		name "In String"
-		links 10202 10202 
+		links 10063 10067 
 	output
 		type Flow
-		id 10203
+		id 10173
 		name " "
 		links 
-node
-	type Variable
-	id 10079
-	name "Bool"
-	varname "Cond2"
-	rect 675 204 792 248
-	color 1 1 1 1
-	output
-		type Bool
-		id 10080
-		name " "
-		links 10084 
-node
-	type Variable
-	id 10293
-	name "String"
-	varname "String"
-	rect -197 220 23 264
-	color 1 1 1 1
-	output
-		type String
-		id 10294
-		name " "
-		links 10202 
-node
-	type Variable
-	id 10404
-	name "String"
-	varname "String"
-	rect -197 284 23 328
-	color 1 1 1 1
-	output
-		type String
-		id 10405
-		name " "
-		links 10202 
 symbol
-	id 10080
-	value "1"
+	id 10015
+	value 1
 symbol
-	id 10088
-	value "0"
-symbol
-	id 10178
-	value "0"
-symbol
-	id 10183
-	value "0"
-symbol
-	id 10294
+	id 10063
 	value "Edit Me1"
 symbol
-	id 10405
+	id 10065
+	value 1
+symbol
+	id 10067
 	value "Edit Me2"

@@ -22,7 +22,7 @@ public:
 
 public:
 	common::cConfig m_config;
-	framework::vprog::cEditManager m_editMgr;
+	vprog::cEditManager m_editMgr;
 
 	cEditorView *m_editView;
 	cVProgView *m_vprogView;
