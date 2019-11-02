@@ -6,6 +6,7 @@
 
 
 class cEditorView : public framework::cDockWindow
+				  , public common::script::iFunctionCallback
 {
 public:
 	cEditorView(const string &name);
@@ -20,6 +21,10 @@ protected:
 	void RenderSimpleNode();
 	void RenderBlueprint();
 
+	// interpreter callback function override
+	virtual int Function(common::script::cSymbolTable &symbolTable
+		, const string &scopeName
+		, const string &funcName
+		, void *arg) override;
 
-public:
 };

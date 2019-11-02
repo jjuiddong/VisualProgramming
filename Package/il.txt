@@ -1,0 +1,51 @@
+nop
+"main":
+nop
+nop
+"SeqWork Event":
+geti "SeqWork Event", "Loading", val0
+seti "GetFrontNode-10262", "Node", val0
+call "GetFrontNode-10262"
+geti "GetFrontNode-10262", "Front", val0
+seti "ReqMove-10255", "Dest", val0
+call "ReqMove-10255"
+getf "Float-10081", " ", val8
+getf "Float-10084", " ", val9
+lesf val8, val9
+ldcmp val9
+setb "<-10363", "O", val9
+getb "<-10363", "O", val0
+eqic val0, 0
+jnz "ErrorState-10050"
+geti "SeqWork Event", "Loading", val0
+seti "ReqLoading-10041", "Station", val0
+geti "SeqWork Event", "l Layer", val0
+seti "ReqLoading-10041", "Layer", val0
+call "ReqLoading-10041"
+getb "Bool-10064", " ", val0
+eqic val0, 0
+jnz "ErrorState-10348"
+ldic val0, 0
+seti "ReqMove-10091", "Dest", val0
+call "ReqMove-10091"
+ldic val0, 0
+seti "ReqUnloading-10339", "Station", val0
+ldic val0, 0
+seti "ReqUnloading-10339", "Layer", val0
+call "ReqUnloading-10339"
+nop
+"ErrorState-10348":
+geti "ReqLoading-10041", "Result", val0
+seti "ErrorState-10348", "ErrorCode", val0
+call "ErrorState-10348"
+nop
+"ErrorState-10050":
+geti "ReqMove-10255", "Result", val0
+seti "ErrorState-10050", "ErrorCode", val0
+call "ErrorState-10050"
+nop
+symbolb "Bool-10064", " ", 1
+symbolf "Float-10081", " ", 1
+symbolf "Float-10084", " ", 10
+symbols "String-10057", " ", "Edit Me1"
+symbols "String-10066", " ", "Edit Me2"

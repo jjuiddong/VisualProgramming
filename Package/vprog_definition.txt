@@ -253,13 +253,13 @@ node
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Float
-		name " "
+		name "A"
 	input
 		type Float
-		name " "
+		name "B"
 	output
 		type Bool
-		name " "
+		name "O"
 node
 	type Operator
 	name "o.O"

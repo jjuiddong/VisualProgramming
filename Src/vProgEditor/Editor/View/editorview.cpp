@@ -35,7 +35,35 @@ void cEditorView::OnRender(const float deltaSeconds)
 {
 	if (ImGui::Button("Open"))
 	{
-		g_global->m_editMgr.Read("vprog.txt");
+		StrPath fileName = "vprog.txt";
+		g_global->m_editMgr.Read(fileName);
+
+		// test code
+		vprog::cVProgFile vprogFile;
+		vprogFile.Read(fileName);
+		common::script::cIntermediateCode code;
+		vprogFile.GenerateIntermediateCode(code);
+		code.Write("il.txt");
+
+		common::script::cInterpreter interpreter;
+		interpreter.Init("il.txt", this, this);
+		interpreter.Run();
+
+		common::script::cEvent evt("SeqWork Event");
+		evt.m_vars.insert({ "SeqWork Event::Loading", variant_t((int)0) });
+		evt.m_vars.insert({ "SeqWork Event::l Layer", variant_t((int)0) });
+		evt.m_vars.insert({ "SeqWork Event::Picking", variant_t((int)0) });
+		evt.m_vars.insert({ "SeqWork Event::Unloading", variant_t((int)0) });
+		evt.m_vars.insert({ "SeqWork Event::u Layer", variant_t((int)0) });
+		interpreter.PushEvent(evt);
+
+		int cnt = 0;
+		while (cnt++ < 100)
+		{
+			interpreter.Update(0.1f);
+			Sleep(1);
+		}
+		interpreter.Clear();
 	}
 
 	ImGui::SameLine();
@@ -46,6 +74,39 @@ void cEditorView::OnRender(const float deltaSeconds)
 
 	//RenderSimpleNode();
 	RenderBlueprint();
+}
+
+
+int cEditorView::Function(common::script::cSymbolTable &symbolTable
+	, const string &scopeName
+	, const string &funcName
+	, void *arg)
+{
+	if (funcName == "GetFrontNode")
+	{
+		variant_t node;
+		symbolTable.Get(scopeName, "Node", node);
+		symbolTable.Set(scopeName, "Front", variant_t((int)10));
+	}
+	else if (funcName == "ReqMove")
+	{
+		symbolTable.Set(scopeName, "Result", variant_t((int)1));
+	}
+	else if (funcName == "ReqLoading")
+	{
+		int a = 0;
+	}
+	else if (funcName == "ReqUnloading")
+	{
+		int a = 0;
+	}
+	else if (funcName == "ErrorState")
+	{
+		variant_t errCode;
+		symbolTable.Get(scopeName, "ErrorCode", errCode);
+		int a = 0;
+	}
+	return 0;
 }
 
 

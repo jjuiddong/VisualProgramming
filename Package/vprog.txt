@@ -82,18 +82,6 @@ node
 		name "Front"
 		links 10257 
 node
-	type Variable
-	id 10014
-	name "Bool"
-	varname "Cond1"
-	rect -174 152 -57 196
-	color 1 1 1 1
-	output
-		type Bool
-		id 10015
-		name " "
-		links 10036 
-node
 	type Control
 	id 10034
 	name "Branch"
@@ -108,7 +96,7 @@ node
 		type Bool
 		id 10036
 		name "Condition"
-		links 10015 
+		links 10366 
 	output
 		type Flow
 		id 10037
@@ -164,7 +152,7 @@ node
 	type Function
 	id 10050
 	name "ErrorState"
-	rect 392 -84 562 20
+	rect 376 -80 546 24
 	color 1 1 1 1
 	input
 		type Flow
@@ -295,7 +283,7 @@ node
 	type Function
 	id 10348
 	name "ErrorState"
-	rect 944 104 1114 208
+	rect 942 144 1112 248
 	color 1 1 1 1
 	input
 		type Flow
@@ -317,7 +305,7 @@ node
 	id 10057
 	name "String"
 	varname "String"
-	rect -516 312 -296 356
+	rect -516 324 -296 368
 	color 1 1 1 1
 	output
 		type String
@@ -329,7 +317,7 @@ node
 	id 10066
 	name "String"
 	varname "String"
-	rect -516 376 -296 420
+	rect -516 388 -296 432
 	color 1 1 1 1
 	output
 		type String
@@ -340,7 +328,7 @@ node
 	type Function
 	id 10170
 	name "Print String"
-	rect -215 256 -56 360
+	rect -215 268 -56 372
 	color 1 1 1 1
 	input
 		type Flow
@@ -357,6 +345,51 @@ node
 		id 10173
 		name " "
 		links 
+node
+	type Operator
+	id 10363
+	name "<"
+	rect -200 128 -59 200
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		id 10364
+		name "A"
+		links 10082 
+	input
+		type Float
+		id 10365
+		name "B"
+		links 10085 
+	output
+		type Bool
+		id 10366
+		name "O"
+		links 10036 
+node
+	type Variable
+	id 10081
+	name "Float"
+	varname "Float"
+	rect -386 156 -280 200
+	color 1 1 1 1
+	output
+		type Float
+		id 10082
+		name " "
+		links 10364 
+node
+	type Variable
+	id 10084
+	name "Float"
+	varname "Float"
+	rect -386 220 -280 264
+	color 1 1 1 1
+	output
+		type Float
+		id 10085
+		name " "
+		links 10365 
 symbol
 	id 10015
 	value 1
@@ -369,3 +402,9 @@ symbol
 symbol
 	id 10067
 	value "Edit Me2"
+symbol
+	id 10082
+	value 1
+symbol
+	id 10085
+	value 10
