@@ -7,7 +7,10 @@ Visual Programming(vProg) with VS2017 C++, ImGui, imgui-node-editor
 	- generate syntanx tree
 	- generate intermediate code
 	- virtual machine, symboltable
-- Debugger (not yet)
+- Debugger (Developing~)
+	- debug trace, step, run, break
+	- trace intermediate code
+	- show register
 - Remote Debugger (not yet)
 - Debug Visualizer (not yet)
 
