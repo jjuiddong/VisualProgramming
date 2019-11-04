@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include "editorview.h"
+#include "codeview.h"
 
 using namespace graphic;
 using namespace framework;
@@ -37,6 +38,7 @@ void cEditorView::OnRender(const float deltaSeconds)
 	{
 		StrPath fileName = "vprog.txt";
 		g_global->m_editMgr.Read(fileName);
+		g_global->m_codeView->ReadVProgFile(fileName);
 	}
 
 	ImGui::SameLine();

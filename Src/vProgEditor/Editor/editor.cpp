@@ -6,6 +6,7 @@
 #include "view/vprogview.h"
 #include "view/debugview.h"
 #include "view/consoleview.h"
+#include "view/codeview.h"
 
 
 class cViewer : public framework::cGameMain2
@@ -90,15 +91,22 @@ bool cViewer::OnInit()
 	assert(result);
 
 	cConsoleView *consoleView = new cConsoleView("Console");
-	consoleView->Create(eDockState::DOCKWINDOW, eDockSlot::BOTTOM, this, vprogView, 0.25f
-		, framework::eDockSizingOption::PIXEL);
+	consoleView->Create(eDockState::DOCKWINDOW, eDockSlot::BOTTOM, this, editorView, 0.25f
+		);
 	result = consoleView->Init(m_renderer);
+	assert(result);
+
+	cCodeView *codeView = new cCodeView("Code");
+	codeView->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, consoleView, 0.25f
+		);
+	result = codeView->Init(m_renderer);
 	assert(result);
 
 	g_global->m_editView = editorView;
 	g_global->m_vprogView = vprogView;
 	g_global->m_dbgView = dbgView;
 	g_global->m_consoleView = consoleView;
+	g_global->m_codeView = codeView;
 
 	m_gui.SetContext();
 	m_gui.SetStyleColorsDark();

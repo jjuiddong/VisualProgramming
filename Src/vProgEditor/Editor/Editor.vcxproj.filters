@@ -16,6 +16,9 @@
     <ClCompile Include="View\consoleview.cpp">
       <Filter>view</Filter>
     </ClCompile>
+    <ClCompile Include="View\codeview.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -30,6 +33,9 @@
       <Filter>view</Filter>
     </ClInclude>
     <ClInclude Include="View\consoleview.h">
+      <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="View\codeview.h">
       <Filter>view</Filter>
     </ClInclude>
   </ItemGroup>

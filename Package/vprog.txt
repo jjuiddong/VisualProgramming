@@ -404,7 +404,7 @@ symbol
 	value "Edit Me2"
 symbol
 	id 10082
-	value 1
+	value 100
 symbol
 	id 10085
 	value 10

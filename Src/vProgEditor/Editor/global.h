@@ -9,6 +9,7 @@ class cEditorView;
 class cVProgView;
 class cDebugView;
 class cConsoleView;
+class cCodeView;
 
 class cGlobal
 {
@@ -30,4 +31,5 @@ public:
 	cVProgView *m_vprogView;
 	cDebugView *m_dbgView;
 	cConsoleView *m_consoleView;
+	cCodeView *m_codeView;
 };

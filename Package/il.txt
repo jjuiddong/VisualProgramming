@@ -45,7 +45,7 @@ seti "ErrorState-10050", "ErrorCode", val0
 call "ErrorState-10050"
 nop
 symbolb "Bool-10064", " ", 1
-symbolf "Float-10081", " ", 1
+symbolf "Float-10081", " ", 100
 symbolf "Float-10084", " ", 10
 symbols "String-10057", " ", "Edit Me1"
 symbols "String-10066", " ", "Edit Me2"

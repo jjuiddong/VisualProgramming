@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "debugview.h"
 #include "consoleview.h"
+#include "codeview.h"
 
 
 cDebugView::cDebugView(const string &name)
@@ -49,6 +50,8 @@ void cDebugView::OnRender(const float deltaSeconds)
 		if (!m_debugger.Init(&m_interpreter))
 			return;
 
+		g_global->m_codeView->ReadVProgFile(fileName);
+
 		m_state = eState::Debug;
 	}
 
@@ -63,9 +66,14 @@ void cDebugView::OnRender(const float deltaSeconds)
 		m_interpreter.PushEvent(evt);
 	}
 
-	if (ImGui::Button("Debug Step"))
+	if (ImGui::Button("Step"))
 	{
 		m_debugger.OneStep();
+	}
+
+	if (ImGui::Button("Debug Cancel"))
+	{
+		m_debugger.Terminate();
 	}
 
 	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
@@ -73,6 +81,8 @@ void cDebugView::OnRender(const float deltaSeconds)
 	{
 		for (auto &vm : m_interpreter.m_vms)
 		{
+			g_global->m_codeView->SetHighLightLine((int)vm->m_reg.idx);
+
 			ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
 			if (ImGui::TreeNode(vm->m_name.c_str()))
 			{

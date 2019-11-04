@@ -160,6 +160,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="View\codeview.cpp" />
     <ClCompile Include="View\consoleview.cpp" />
     <ClCompile Include="View\debugview.cpp" />
     <ClCompile Include="View\editorview.cpp" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <ClInclude Include="global.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="View\codeview.h" />
     <ClInclude Include="View\consoleview.h" />
     <ClInclude Include="View\debugview.h" />
     <ClInclude Include="View\editorview.h" />
