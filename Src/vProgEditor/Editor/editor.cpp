@@ -1,9 +1,11 @@
 //
-// Visual Programming Editor (vProg)
+// Visual Programming Editor (vProg Editor)
 //
 #include "stdafx.h"
 #include "view/editorview.h"
 #include "view/vprogview.h"
+#include "view/debugview.h"
+#include "view/consoleview.h"
 
 
 class cViewer : public framework::cGameMain2
@@ -81,8 +83,22 @@ bool cViewer::OnInit()
 	result = vprogView->Init(m_renderer);
 	assert(result);
 
+	cDebugView *dbgView = new cDebugView("Debug");
+	dbgView->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, vprogView, 0.5f
+		, framework::eDockSizingOption::PIXEL);
+	result = dbgView->Init(m_renderer);
+	assert(result);
+
+	cConsoleView *consoleView = new cConsoleView("Console");
+	consoleView->Create(eDockState::DOCKWINDOW, eDockSlot::BOTTOM, this, vprogView, 0.25f
+		, framework::eDockSizingOption::PIXEL);
+	result = consoleView->Init(m_renderer);
+	assert(result);
+
 	g_global->m_editView = editorView;
 	g_global->m_vprogView = vprogView;
+	g_global->m_dbgView = dbgView;
+	g_global->m_consoleView = consoleView;
 
 	m_gui.SetContext();
 	m_gui.SetStyleColorsDark();

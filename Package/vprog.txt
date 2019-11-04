@@ -370,7 +370,7 @@ node
 	type Variable
 	id 10081
 	name "Float"
-	varname "Float"
+	varname "fval1"
 	rect -386 156 -280 200
 	color 1 1 1 1
 	output
@@ -382,7 +382,7 @@ node
 	type Variable
 	id 10084
 	name "Float"
-	varname "Float"
+	varname "fval2"
 	rect -386 220 -280 264
 	color 1 1 1 1
 	output

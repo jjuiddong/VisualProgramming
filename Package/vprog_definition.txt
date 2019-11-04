@@ -249,6 +249,7 @@ node
 node
 	type Operator
 	name "<"
+	varname "Float"
 	rect 366 652 470 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -262,18 +263,154 @@ node
 		name "O"
 node
 	type Operator
-	name "o.O"
+	name "<="
+	varname "Float"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Float
-		name " "
-	output
+		name "A"
+	input
 		type Float
-		name " "
+		name "B"
 	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name ">"
+	varname "Float"
+	rect 366 652 470 724
+	color 0.501961 0.764706 0.972549 1
+	input
 		type Float
-		name " "
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name ">="
+	varname "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name "=="
+	varname "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name "<"
+	varname "Int"
+	rect 366 652 470 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name "<="
+	varname "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name ">"
+	varname "Int"
+	rect 366 652 470 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name ">="
+	varname "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name "=="
+	varname "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Bool
+		name "O"
+node
+	type Operator
+	name "=="
+	varname "Bool"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Bool
+		name "A"
+	input
+		type Bool
+		name "B"
+	output
+		type Bool
+		name "O"		
 node
 	type Function
 	name "Print String"

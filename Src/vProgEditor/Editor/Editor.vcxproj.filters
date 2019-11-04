@@ -10,6 +10,12 @@
     <ClCompile Include="View\vprogview.cpp">
       <Filter>view</Filter>
     </ClCompile>
+    <ClCompile Include="View\debugview.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
+    <ClCompile Include="View\consoleview.cpp">
+      <Filter>view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -18,6 +24,12 @@
     </ClInclude>
     <ClInclude Include="global.h" />
     <ClInclude Include="View\vprogview.h">
+      <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="View\debugview.h">
+      <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="View\consoleview.h">
       <Filter>view</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,5 +19,6 @@ public:
 
 public:
 	void RenderDefinition(const StrId &headerName, const vprog::eNodeType::Enum type);
+	void RenderOperatorList();
 	void RenderSymbolTable();
 };
