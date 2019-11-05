@@ -19,7 +19,9 @@ public:
 
 
 protected:
+	void RenderEventTriggerList();
 	void RenderVariant(const StrId &name, INOUT variant_t &var);
+	bool ReadEventTriggerListFile(const StrPath &fileName);
 
 	// interpreter callback function override
 	virtual int Function(common::script::cSymbolTable &symbolTable
@@ -33,5 +35,17 @@ public:
 	eState m_state;
 	common::script::cInterpreter m_interpreter;
 	common::script::cDebugger m_debugger;
-};
 
+	struct sEventTrigger {
+		StrId name;
+		StrId evtName;
+		map<StrId, variant_t> vars;
+
+		sEventTrigger();
+		~sEventTrigger();
+		sEventTrigger(const sEventTrigger &rhs);
+		sEventTrigger& operator=(const sEventTrigger &rhs);
+		void clear();
+	};
+	vector<sEventTrigger> m_events;
+};

@@ -21,6 +21,9 @@ node
 		type Flow
 		name " "
 	output
+		type String
+		name "Robot Name"
+	output
 		type Int
 		name "Loading"
 	output
@@ -35,6 +38,23 @@ node
 	output
 		type Int
 		name "u Layer"
+node
+	type Event
+	name "AckMove Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Dest"
+	output
+		type Int
+		name "Result"
 node
 	type Control
 	name "Branch"
@@ -100,6 +120,42 @@ node
 	output
 		type Int
 		name "Front"
+node
+	type Macro
+	name "IsRobotReady"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type String
+		name "Robot Name"
+	output
+		type Bool
+		name "Ready"
+node
+	type Macro
+	name "IsRobotWork"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type String
+		name "Robot Name"
+	output
+		type Bool
+		name "Work"
+node
+	type Function
+	name "SetRobotWork"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	output
+		type Flow
+		name " "		
 node
 	type Function
 	name "ReqMove"

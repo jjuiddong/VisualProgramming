@@ -20,5 +20,6 @@ public:
 
 public:
 	vector<string> m_outputs;
+	int m_movScrollLine; // when update string
 };
 

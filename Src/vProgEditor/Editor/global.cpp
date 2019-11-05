@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include "global.h"
+#include "view/codeview.h"
 
 
 // 실행 인자값 두 번째 값을 리턴한다.
@@ -74,10 +75,13 @@ bool cGlobal::Init(HWND hWnd, graphic::cRenderer &renderer)
 }
 
 
-// cCommandView가 생성된 후, 호출되어야 한다.
-// cGuiManager, DebugVisualizer 를 생성한다.
-bool cGlobal::InitRemoteDebugger()
+// read visual programming file
+// update editmanager, codeviewer 
+bool cGlobal::ReadVProgFile(const StrPath &fileName)
 {
+	m_editMgr.Read(fileName);
+	m_codeView->ReadVProgFile(fileName);
+
 	return true;
 }
 

@@ -5,6 +5,7 @@
 
 cConsoleView::cConsoleView(const string &name)
 	: framework::cDockWindow(name)
+	, m_movScrollLine(-1)
 {
 }
 
@@ -31,11 +32,21 @@ void cConsoleView::OnRender(const float deltaSeconds)
 		m_outputs.clear();
 	}
 
-	for (uint i = 0; i < m_outputs.size(); ++i)
+	if (ImGui::BeginChild("Console String Window", ImVec2(0,0), true))
 	{
-		auto &str = m_outputs[i];
-		ImGui::Selectable(str.c_str());
+		for (uint i = 0; i < m_outputs.size(); ++i)
+		{
+			auto &str = m_outputs[i];
+			ImGui::Selectable(str.c_str());
+		}
+
+		if (m_movScrollLine != (int)m_outputs.size())
+		{
+			ImGui::SetScrollHere();
+			m_movScrollLine = (int)m_outputs.size();
+		}
 	}
+	ImGui::EndChild();
 }
 
 
@@ -47,4 +58,6 @@ void cConsoleView::AddString(const char* fmt, ...)
 	vsnprintf_s(buff, sizeof(buff) - 1, _TRUNCATE, fmt, args);
 	va_end(args);
 	m_outputs.push_back(buff);
+
+	m_movScrollLine = -1;
 }

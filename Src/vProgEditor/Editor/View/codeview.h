@@ -20,6 +20,7 @@ public:
 	bool ReadIntermediateFile(const StrPath &fileName);
 	bool SetCode(const common::script::cIntermediateCode &icode);
 	bool SetHighLightLine(const int line);
+	bool ClearCode();
 
 
 protected:
@@ -30,5 +31,7 @@ public:
 	common::script::cIntermediateCode m_code;
 	vector<string> m_strs;
 	int m_highlightLine;
+	int m_movScrollLine; // when update highlight line
+	ax::NodeEditor::LinkId m_flowLinkId;
 };
 

@@ -91,14 +91,12 @@ bool cViewer::OnInit()
 	assert(result);
 
 	cConsoleView *consoleView = new cConsoleView("Console");
-	consoleView->Create(eDockState::DOCKWINDOW, eDockSlot::BOTTOM, this, editorView, 0.25f
-		);
+	consoleView->Create(eDockState::DOCKWINDOW, eDockSlot::BOTTOM, this, editorView, 0.25f);
 	result = consoleView->Init(m_renderer);
 	assert(result);
 
-	cCodeView *codeView = new cCodeView("Code");
-	codeView->Create(eDockState::DOCKWINDOW, eDockSlot::TAB, this, consoleView, 0.25f
-		);
+	cCodeView *codeView = new cCodeView("iCode");
+	codeView->Create(eDockState::DOCKWINDOW, eDockSlot::RIGHT, this, consoleView, 0.5f);
 	result = codeView->Init(m_renderer);
 	assert(result);
 

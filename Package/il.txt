@@ -3,49 +3,99 @@ nop
 nop
 nop
 "SeqWork Event":
+#comment "flow", 10012, 10020
+gets "SeqWork Event", "Robot Name", val0
+sets "IsRobotReady-10161", "Robot Name", val0
+#comment "flow", 10013, 10162
+call "IsRobotReady-10161"
+getb "IsRobotReady-10161", "Ready", val0
+#comment "flow", 10163, 10021
+eqic val0, 0
+jnz "ErrorState-10027"
+#comment "flow", 10022, 10033
 geti "SeqWork Event", "Loading", val0
-seti "GetFrontNode-10262", "Node", val0
-call "GetFrontNode-10262"
-geti "GetFrontNode-10262", "Front", val0
-seti "ReqMove-10255", "Dest", val0
-call "ReqMove-10255"
-getf "Float-10081", " ", val8
-getf "Float-10084", " ", val9
-lesf val8, val9
+seti "GetFrontNode-10039", "Node", val0
+#comment "flow", 10014, 10040
+call "GetFrontNode-10039"
+geti "GetFrontNode-10039", "Front", val0
+seti "ReqMove-10032", "Dest", val0
+#comment "flow", 10041, 10034
+call "ReqMove-10032"
+#comment "flow", 10035, 10071
+geti "ReqMove-10032", "Result", val8
+#comment "flow", 10036, 10090
+geti "Int-10049", " ", val9
+#comment "flow", 10050, 10091
+eqi val8, val9
 ldcmp val9
-setb "<-10363", "O", val9
-getb "<-10363", "O", val0
+setb "==-10089", "O", val9
+getb "==-10089", "O", val0
+#comment "flow", 10092, 10072
 eqic val0, 0
-jnz "ErrorState-10050"
-geti "SeqWork Event", "Loading", val0
-seti "ReqLoading-10041", "Station", val0
-geti "SeqWork Event", "l Layer", val0
-seti "ReqLoading-10041", "Layer", val0
-call "ReqLoading-10041"
-getb "Bool-10064", " ", val0
+jnz "ErrorState-10077"
+#comment "flow", 10073, 10330
+gets "SeqWork Event", "Robot Name", val0
+sets "SetRobotWork-10329", "Robot Name", val0
+#comment "flow", 10013, 10331
+call "SetRobotWork-10329"
+nop
+"ErrorState-10077":
+#comment "flow", 10074, 10078
+geti "ReqMove-10032", "Result", val0
+seti "ErrorState-10077", "ErrorCode", val0
+#comment "flow", 10036, 10079
+call "ErrorState-10077"
+nop
+"ErrorState-10027":
+#comment "flow", 10023, 10028
+geti "Int-10058", " ", val0
+seti "ErrorState-10027", "ErrorCode", val0
+#comment "flow", 10059, 10029
+call "ErrorState-10027"
+nop
+nop
+"AckMove Event":
+#comment "flow", 10372, 10327
+gets "AckMove Event", "Robot Name", val0
+sets "IsRobotWork-10336", "Robot Name", val0
+#comment "flow", 10373, 10337
+call "IsRobotWork-10336"
+getb "IsRobotWork-10336", "Work", val0
+#comment "flow", 10338, 10328
 eqic val0, 0
-jnz "ErrorState-10348"
-ldic val0, 0
-seti "ReqMove-10091", "Dest", val0
-call "ReqMove-10091"
-ldic val0, 0
-seti "ReqUnloading-10339", "Station", val0
-ldic val0, 0
-seti "ReqUnloading-10339", "Layer", val0
-call "ReqUnloading-10339"
+jnz "ErrorState-10341"
+#comment "flow", 10333, 10347
+geti "AckMove Event", "Result", val8
+#comment "flow", 10375, 10589
+geti "Int-10359", " ", val9
+#comment "flow", 10360, 10590
+eqi val8, val9
+ldcmp val9
+setb "==-10588", "O", val9
+getb "==-10588", "O", val0
+#comment "flow", 10591, 10348
+eqic val0, 0
+jnz "ErrorState-10746"
+#comment "flow", 10349, 10082
+gets "AckMove Event", "Robot Name", val0
+sets "SetRobotWork-10081", "Robot Name", val0
+#comment "flow", 10373, 10083
+call "SetRobotWork-10081"
 nop
-"ErrorState-10348":
-geti "ReqLoading-10041", "Result", val0
-seti "ErrorState-10348", "ErrorCode", val0
-call "ErrorState-10348"
+"ErrorState-10746":
+#comment "flow", 10350, 10747
+geti "AckMove Event", "Result", val0
+seti "ErrorState-10746", "ErrorCode", val0
+#comment "flow", 10375, 10748
+call "ErrorState-10746"
 nop
-"ErrorState-10050":
-geti "ReqMove-10255", "Result", val0
-seti "ErrorState-10050", "ErrorCode", val0
-call "ErrorState-10050"
+"ErrorState-10341":
+#comment "flow", 10334, 10342
+geti "Int-10359", " ", val0
+seti "ErrorState-10341", "ErrorCode", val0
+#comment "flow", 10360, 10343
+call "ErrorState-10341"
 nop
-symbolb "Bool-10064", " ", 1
-symbolf "Float-10081", " ", 100
-symbolf "Float-10084", " ", 10
-symbols "String-10057", " ", "Edit Me1"
-symbols "String-10066", " ", "Edit Me2"
+symboli "Int-10049", " ", 0
+symboli "Int-10058", " ", 1
+symboli "Int-10359", " ", 0

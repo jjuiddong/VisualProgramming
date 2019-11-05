@@ -37,8 +37,7 @@ void cEditorView::OnRender(const float deltaSeconds)
 	if (ImGui::Button("Open"))
 	{
 		StrPath fileName = "vprog.txt";
-		g_global->m_editMgr.Read(fileName);
-		g_global->m_codeView->ReadVProgFile(fileName);
+		g_global->ReadVProgFile(fileName);
 	}
 
 	ImGui::SameLine();
@@ -46,6 +45,12 @@ void cEditorView::OnRender(const float deltaSeconds)
 	{
 		g_global->m_editMgr.Write("vprog.txt");
 	}
+
+	//ImGui::SameLine();
+	//if (ImGui::Button("Show Flow"))
+	//{
+	//	g_global->m_editMgr.ShowFlow();
+	//}
 
 	//RenderSimpleNode();
 	RenderBlueprint();

@@ -1,0 +1,74 @@
+
+
+event_trigger
+	name "SeqWork Event"
+	eventname "SeqWork Event"
+	input
+		name "SeqWork Event::Robot Name"
+		type String
+		value "robot1"
+	input
+		name "SeqWork Event::Loading"
+		type Int
+		value 0
+	input
+		name "SeqWork Event::l Layer"
+		type Int
+		value 0
+	input
+		name "SeqWork Event::Picking"
+		type Int
+		value 0
+	input
+		name "SeqWork Event::Unloading"
+		type Int
+		value 0
+	input
+		name "SeqWork Event::u Layer"
+		type Int
+		value 0
+
+event_trigger
+	name "SeqWork Event2"
+	eventname "SeqWork Event"
+	input
+		name "SeqWork Event::Robot Name"
+		type String
+		value "robot1"	
+	input
+		name "SeqWork Event::Loading"
+		type Int
+		value 10
+	input
+		name "SeqWork Event::l Layer"
+		type Int
+		value 1
+	input
+		name "SeqWork Event::Picking"
+		type Int
+		value 0
+	input
+		name "SeqWork Event::Unloading"
+		type Int
+		value 20
+	input
+		name "SeqWork Event::u Layer"
+		type Int
+		value 1
+
+event_trigger
+	name "AckMove Event"
+	eventname "AckMove Event"
+	input
+		name "AckMove Event::Robot Name"
+		type String
+		value "robot1"	
+	input
+		name "AckMove Event::Dest"
+		type Int
+		value 10
+	input
+		name "AckMove Event::Result"
+		type Int
+		value 0
+

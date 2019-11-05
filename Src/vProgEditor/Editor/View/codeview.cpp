@@ -6,6 +6,7 @@
 cCodeView::cCodeView(const string &name)
 	: framework::cDockWindow(name)
 	, m_highlightLine(-1)
+	, m_movScrollLine(-1)
 {
 }
 
@@ -27,11 +28,42 @@ void cCodeView::OnUpdate(const float deltaSeconds)
 
 void cCodeView::OnRender(const float deltaSeconds)
 {
-	for (uint i = 0; i < m_strs.size(); ++i)
+	if (ImGui::BeginChild("iCode Child Window", ImVec2(0, 0), true))
 	{
-		auto &str = m_strs[i];
-		bool isSelect = (m_highlightLine == (int)i);
-		ImGui::Selectable(str.c_str(), &isSelect);
+		for (uint i = 0; i < m_strs.size(); ++i)
+		{
+			auto &str = m_strs[i];
+			bool isSelect = (m_highlightLine == (int)i);
+			ImGui::Selectable(str.c_str(), &isSelect);
+			if (isSelect 
+				&& (m_movScrollLine != m_highlightLine))
+			{
+				ImGui::SetScrollHere();
+				m_movScrollLine = m_highlightLine;
+			}
+		}
+	}
+	ImGui::EndChild();
+
+	// debug visualizer
+	// show flow animation
+	if ((uint)m_highlightLine < m_code.m_codes.size())
+	{
+		const auto &inst = m_code.m_codes[m_highlightLine];
+		if ((inst.cmd == script::eCommand::cmt) && (inst.str1 == "flow"))
+		{
+			// debug information
+			// check from-to pin id
+			if (vprog::sLink *link 
+				= g_global->m_editMgr.FindLink(inst.reg1, inst.reg2))
+			{
+				if (m_flowLinkId != link->id)
+				{
+					m_flowLinkId = link->id;
+					g_global->m_editMgr.ShowFlow(link->id);
+				}
+			}
+		}
 	}
 }
 
@@ -72,6 +104,7 @@ bool cCodeView::ReadIntermediateFile(const StrPath &fileName)
 bool cCodeView::SetCode(const common::script::cIntermediateCode &icode)
 {
 	m_strs.clear();
+	m_code = icode;
 
 	for (uint i=0; i < icode.m_codes.size(); ++i)
 	{
@@ -88,6 +121,22 @@ bool cCodeView::SetCode(const common::script::cIntermediateCode &icode)
 bool cCodeView::SetHighLightLine(const int line)
 {
 	m_highlightLine = line;
+
+	// move scroll
+	if (m_movScrollLine != line)
+		m_movScrollLine = -1;
+	return true;
+}
+
+
+// clear intermeidate code
+bool cCodeView::ClearCode()
+{
+	m_code.Clear();
+	m_strs.clear();
+	m_highlightLine = -1;
+	m_movScrollLine = -1;
+	m_flowLinkId = 0;
 	return true;
 }
 
@@ -169,6 +218,14 @@ string cCodeView::ConvertInstructionToString(const common::script::sInstruction 
 	case script::eCommand::label:
 		ss.str(""); // clear stringstream
 		ss << "\"" << inst.str1 << "\":";
+		break;
+
+	case script::eCommand::cmt:
+		ss.str(""); // clear stringstream
+		ss << "#comment ";
+		ss << "\"" << inst.str1 << "\"";
+		ss << ", " << inst.reg1;
+		ss << ", " << inst.reg2;
 		break;
 
 	case script::eCommand::nop:

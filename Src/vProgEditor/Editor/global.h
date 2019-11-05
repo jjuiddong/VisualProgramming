@@ -18,7 +18,8 @@ public:
 	virtual ~cGlobal();
 
 	bool Init(HWND hWnd, graphic::cRenderer &renderer);
-	bool InitRemoteDebugger();
+	bool ReadVProgFile(const StrPath &fileName);
+
 	Vector2 GetMouse3DPos(const ImVec2 &mousePt);
 	Vector2 GetMouse3DOriginalPos(const ImVec2 &mousePt);
 
