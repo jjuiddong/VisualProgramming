@@ -12,6 +12,7 @@ Visual Programming(vProg) with VS2017 C++, ImGui, imgui-node-editor
 	- trace intermediate code
 	- show register
 - Remote Debugger (not yet)
-- Debug Visualizer (not yet)
+- Debug Visualizer (Developing~)
+	- trace icode, link flow animation
 
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-11-05-2.jpg?raw=true)
