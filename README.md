@@ -11,7 +11,10 @@ Visual Programming(vProg) with VS2017 C++, ImGui, imgui-node-editor
 	- debug trace, step, run, break
 	- trace intermediate code
 	- show register
-- Remote Debugger (not yet)
+- Remote Debugger (Developing~)
+	- use tcp/ip protocol
+	- instruction sync
+	- symboletbale sync (not yet)
 - Debug Visualizer (Developing~)
 	- trace icode, link flow animation
 
