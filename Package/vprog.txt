@@ -2,7 +2,7 @@ node
 	type Event
 	id 10011
 	name "SeqWork Event"
-	rect -743 -168 -610 76
+	rect -916 -168 -783 76
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -43,7 +43,7 @@ node
 	type Control
 	id 10019
 	name "Branch"
-	rect -274 -96 -33 8
+	rect -447 -96 -206 8
 	color 1 1 1 1
 	input
 		type Flow
@@ -69,7 +69,7 @@ node
 	type Function
 	id 10027
 	name "ErrorState"
-	rect 30 -260 200 -156
+	rect -143 -260 27 -156
 	color 1 1 1 1
 	input
 		type Flow
@@ -90,7 +90,7 @@ node
 	type Function
 	id 10032
 	name "ReqMove"
-	rect 110 -96 278 36
+	rect -63 -96 105 36
 	color 1 1 1 1
 	input
 		type Flow
@@ -121,7 +121,7 @@ node
 	type Macro
 	id 10039
 	name "GetFrontNode"
-	rect -114 44 55 120
+	rect -287 44 -118 120
 	color 1 1 1 1
 	input
 		type Int
@@ -138,7 +138,7 @@ node
 	id 10049
 	name "Int"
 	varname "0"
-	rect 221 92 305 136
+	rect 48 92 132 136
 	color 1 1 1 1
 	output
 		type Int
@@ -149,7 +149,7 @@ node
 	type Control
 	id 10070
 	name "Branch"
-	rect 557 -64 798 40
+	rect 384 -64 625 40
 	color 1 1 1 1
 	input
 		type Flow
@@ -175,7 +175,7 @@ node
 	type Function
 	id 10077
 	name "ErrorState"
-	rect 846 -256 1016 -152
+	rect 673 -256 843 -152
 	color 1 1 1 1
 	input
 		type Flow
@@ -196,7 +196,7 @@ node
 	type Macro
 	id 10161
 	name "IsRobotReady"
-	rect -523 -4 -306 72
+	rect -696 -4 -479 72
 	color 1 1 1 1
 	input
 		type String
@@ -212,7 +212,7 @@ node
 	type Function
 	id 10329
 	name "SetRobotWork"
-	rect 918 -32 1102 72
+	rect 745 -32 929 72
 	color 1 1 1 1
 	input
 		type Flow
@@ -234,7 +234,7 @@ node
 	id 10058
 	name "Int"
 	varname "Default ErrorCode"
-	rect -220 -180 -34 -136
+	rect -393 -180 -207 -136
 	color 1 1 1 1
 	output
 		type Int
@@ -245,7 +245,7 @@ node
 	type Control
 	id 10326
 	name "Branch"
-	rect -269 856 -28 960
+	rect -442 856 -201 960
 	color 1 1 1 1
 	input
 		type Flow
@@ -271,7 +271,7 @@ node
 	type Macro
 	id 10336
 	name "IsRobotWork"
-	rect -524 948 -311 1024
+	rect -697 948 -484 1024
 	color 1 1 1 1
 	input
 		type String
@@ -287,7 +287,7 @@ node
 	type Function
 	id 10341
 	name "ErrorState"
-	rect 52 764 222 868
+	rect -121 764 49 868
 	color 1 1 1 1
 	input
 		type Flow
@@ -308,7 +308,7 @@ node
 	type Control
 	id 10346
 	name "Branch"
-	rect 100 968 341 1072
+	rect -73 968 168 1072
 	color 1 1 1 1
 	input
 		type Flow
@@ -335,7 +335,7 @@ node
 	id 10359
 	name "Int"
 	varname "0"
-	rect -240 1096 -156 1140
+	rect -413 1096 -329 1140
 	color 1 1 1 1
 	output
 		type Int
@@ -346,7 +346,7 @@ node
 	type Function
 	id 10746
 	name "ErrorState"
-	rect 420 764 590 868
+	rect 247 764 417 868
 	color 1 1 1 1
 	input
 		type Flow
@@ -367,7 +367,7 @@ node
 	type Operator
 	id 10089
 	name "=="
-	rect 343 16 494 88
+	rect 170 16 321 88
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Int
@@ -388,7 +388,7 @@ node
 	type Event
 	id 10371
 	name "AckMove Event"
-	rect -754 868 -620 1028
+	rect -927 868 -793 1028
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -414,7 +414,7 @@ node
 	type Operator
 	id 10588
 	name "=="
-	rect -92 1050 59 1122
+	rect -265 1050 -114 1122
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Int
@@ -435,7 +435,7 @@ node
 	type Function
 	id 10081
 	name "SetRobotWork"
-	rect 420 1020 604 1124
+	rect 247 1020 431 1124
 	color 1 1 1 1
 	input
 		type Flow
@@ -456,7 +456,7 @@ node
 	type Event
 	id 10087
 	name "Dest Event"
-	rect -742 288 -610 420
+	rect -915 288 -783 420
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -477,7 +477,7 @@ node
 	type Macro
 	id 10095
 	name "IsRobotReady"
-	rect -546 412 -329 488
+	rect -719 412 -502 488
 	color 1 1 1 1
 	input
 		type String
@@ -493,7 +493,7 @@ node
 	type Control
 	id 10099
 	name "Branch"
-	rect -290 336 -49 440
+	rect -463 336 -222 440
 	color 1 1 1 1
 	input
 		type Flow
@@ -519,7 +519,7 @@ node
 	type Function
 	id 10106
 	name "ErrorState"
-	rect 94 240 264 344
+	rect -79 240 91 344
 	color 1 1 1 1
 	input
 		type Flow
@@ -540,7 +540,7 @@ node
 	type Control
 	id 10123
 	name "Branch"
-	rect 541 460 782 564
+	rect 368 460 609 564
 	color 1 1 1 1
 	input
 		type Flow
@@ -566,7 +566,7 @@ node
 	type Operator
 	id 10129
 	name "=="
-	rect 343 572 494 644
+	rect 170 572 321 644
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Int
@@ -588,7 +588,7 @@ node
 	id 10144
 	name "Int"
 	varname "0"
-	rect 194 620 278 664
+	rect 21 620 105 664
 	color 1 1 1 1
 	output
 		type Int
@@ -599,7 +599,7 @@ node
 	type Function
 	id 10397
 	name "SetRobotWork"
-	rect 878 508 1062 612
+	rect 705 508 889 612
 	color 1 1 1 1
 	input
 		type Flow
@@ -620,7 +620,7 @@ node
 	type Function
 	id 10402
 	name "ErrorState"
-	rect 884 252 1054 356
+	rect 711 252 881 356
 	color 1 1 1 1
 	input
 		type Flow
@@ -641,7 +641,7 @@ node
 	type Function
 	id 10666
 	name "ReqMove"
-	rect 69 384 286 516
+	rect -104 384 113 516
 	color 1 1 1 1
 	input
 		type Flow

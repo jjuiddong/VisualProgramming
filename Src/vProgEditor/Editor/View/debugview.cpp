@@ -44,6 +44,7 @@ cDebugView::cDebugView(const string &name)
 
 cDebugView::~cDebugView()
 {
+	m_remoteDebugger.Clear();
 	m_debugger.Clear();
 	m_interpreter.Clear();
 }
@@ -61,8 +62,9 @@ void cDebugView::OnUpdate(const float deltaSeconds)
 {
 	RET(eState::Stop == m_state);
 
-	m_interpreter.Process(deltaSeconds);
+	m_remoteDebugger.Process(deltaSeconds);
 	m_debugger.Process(deltaSeconds);
+	m_interpreter.Process(deltaSeconds);
 }
 
 
@@ -85,9 +87,13 @@ void cDebugView::OnRender(const float deltaSeconds)
 			if (!m_debugger.Init(&m_interpreter))
 				return;
 
+			m_remoteDebugger.Init(network2::cRemoteDebugger::eDebugMode::Remote
+				, "127.0.0.1", 55555, &m_debugger);
+			m_remoteDebugger.Start();
+
 			g_global->ReadVProgFile(fileName);
 
-			m_state = eState::Debug;
+			m_state = eState::RemoteDebug;
 		}
 	}
 
@@ -100,7 +106,8 @@ void cDebugView::OnRender(const float deltaSeconds)
 		if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
 			, "Debug Cancel?", "CONFIRM", MB_YESNO))
 		{
-			m_debugger.Terminate();
+			//m_debugger.Terminate();
+			m_remoteDebugger.Terminate();
 			g_global->m_codeView->ClearCode();
 		}
 	}
@@ -112,13 +119,15 @@ void cDebugView::OnRender(const float deltaSeconds)
 
 	if (ImGui::Button("Step"))
 	{
-		m_debugger.OneStep();
+		//m_debugger.OneStep();
+		m_remoteDebugger.OneStep();
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Run"))
 	{
-		m_debugger.Run();
+		//m_debugger.Run();
+		m_remoteDebugger.DebugRun();
 	}
 
 	ImGui::Spacing();
@@ -134,30 +143,73 @@ void cDebugView::OnRender(const float deltaSeconds)
 	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
 	if (ImGui::CollapsingHeader("Virtual Machine"))
 	{
-		for (auto &vm : m_interpreter.m_vms)
+		if (eState::Debug == m_state)
 		{
-			g_global->m_codeView->SetHighLightLine((int)vm->m_reg.idx);
-
-			ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
-			if (ImGui::TreeNode(vm->m_name.c_str()))
+			for (auto &vm : m_interpreter.m_vms)
 			{
-				ImGui::TextUnformatted("Register Information");
+				g_global->m_codeView->SetHighLightLine((int)vm->m_reg.idx);
 
-				ImGui::TextUnformatted("index");
-				ImGui::SameLine();
-				ImGui::InputInt("##index", (int*)&vm->m_reg.idx);
-
-				for (uint i = 0; i < ARRAYSIZE(vm->m_reg.val); ++i)
+				ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
+				if (ImGui::TreeNode(vm->m_name.c_str()))
 				{
-					auto &var = vm->m_reg.val[i];
-					StrId id;
-					id.Format("reg[%d]", i);
-					RenderVariant(id, var);
-				}
+					ImGui::TextUnformatted("Register Information");
 
-				ImGui::TreePop();
+					ImGui::TextUnformatted("index");
+					ImGui::SameLine();
+					ImGui::InputInt("##index", (int*)&vm->m_reg.idx);
+
+					for (uint i = 0; i < ARRAYSIZE(vm->m_reg.val); ++i)
+					{
+						auto &var = vm->m_reg.val[i];
+						StrId id;
+						id.Format("reg[%d]", i);
+						RenderVariant(id, var);
+					}
+
+					ImGui::TreePop();
+				}
 			}
 		}
+		else if (eState::RemoteDebug == m_state)
+		{
+			for (auto &vm : m_interpreter.m_vms)
+			{
+				// update debug info from host remote debugger
+				auto it = m_remoteDebugger.m_vmDbgs.find(vm->m_name);
+				if (m_remoteDebugger.m_vmDbgs.end() != it)
+				{
+					if (!it->second.empty())
+					{
+						vm->m_reg.idx = it->second.front();
+						it->second.pop();
+					}
+				}
+									   
+				g_global->m_codeView->SetHighLightLine((int)vm->m_reg.idx);
+
+				ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
+				if (ImGui::TreeNode(vm->m_name.c_str()))
+				{
+					ImGui::TextUnformatted("Register Information");
+
+					ImGui::TextUnformatted("index");
+					ImGui::SameLine();
+					ImGui::InputInt("##index", (int*)&vm->m_reg.idx
+						, ImGuiInputTextFlags_ReadOnly);
+
+					for (uint i = 0; i < ARRAYSIZE(vm->m_reg.val); ++i)
+					{
+						auto &var = vm->m_reg.val[i];
+						StrId id;
+						id.Format("reg[%d]", i);
+						RenderVariant(id, var);
+					}
+
+					ImGui::TreePop();
+				}
+			}
+		}//~eState::RemoteDebug
+
 	}
 }
 

@@ -31,10 +31,11 @@ protected:
 
 
 public:
-	enum class eState {Stop, Debug};
+	enum class eState {Stop, Debug, RemoteDebug};
 	eState m_state;
 	common::script::cInterpreter m_interpreter;
 	common::script::cDebugger m_debugger;
+	network2::cRemoteDebugger m_remoteDebugger;
 
 	struct sEventTrigger {
 		StrId name;
