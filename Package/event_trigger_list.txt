@@ -72,3 +72,14 @@ event_trigger
 		type Int
 		value 0
 
+event_trigger
+	name "Dest Event"
+	eventname "Dest Event"
+	input
+		name "Dest Event::Robot Name"
+		type String
+		value "robot1"	
+	input
+		name "Dest Event::Dest"
+		type Int
+		value 10

@@ -2,7 +2,7 @@ node
 	type Event
 	id 10011
 	name "SeqWork Event"
-	rect -1181 -184 -1048 60
+	rect -743 -168 -610 76
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -43,7 +43,7 @@ node
 	type Control
 	id 10019
 	name "Branch"
-	rect -712 -112 -471 -8
+	rect -274 -96 -33 8
 	color 1 1 1 1
 	input
 		type Flow
@@ -69,7 +69,7 @@ node
 	type Function
 	id 10027
 	name "ErrorState"
-	rect -408 -276 -238 -172
+	rect 30 -260 200 -156
 	color 1 1 1 1
 	input
 		type Flow
@@ -90,7 +90,7 @@ node
 	type Function
 	id 10032
 	name "ReqMove"
-	rect -328 -112 -160 20
+	rect 110 -96 278 36
 	color 1 1 1 1
 	input
 		type Flow
@@ -121,7 +121,7 @@ node
 	type Macro
 	id 10039
 	name "GetFrontNode"
-	rect -552 28 -383 104
+	rect -114 44 55 120
 	color 1 1 1 1
 	input
 		type Int
@@ -138,7 +138,7 @@ node
 	id 10049
 	name "Int"
 	varname "0"
-	rect -217 76 -133 120
+	rect 221 92 305 136
 	color 1 1 1 1
 	output
 		type Int
@@ -149,7 +149,7 @@ node
 	type Control
 	id 10070
 	name "Branch"
-	rect 119 -80 360 24
+	rect 557 -64 798 40
 	color 1 1 1 1
 	input
 		type Flow
@@ -175,7 +175,7 @@ node
 	type Function
 	id 10077
 	name "ErrorState"
-	rect 408 -272 578 -168
+	rect 846 -256 1016 -152
 	color 1 1 1 1
 	input
 		type Flow
@@ -196,7 +196,7 @@ node
 	type Macro
 	id 10161
 	name "IsRobotReady"
-	rect -961 -20 -744 56
+	rect -523 -4 -306 72
 	color 1 1 1 1
 	input
 		type String
@@ -212,7 +212,7 @@ node
 	type Function
 	id 10329
 	name "SetRobotWork"
-	rect 480 -48 664 56
+	rect 918 -32 1102 72
 	color 1 1 1 1
 	input
 		type Flow
@@ -234,7 +234,7 @@ node
 	id 10058
 	name "Int"
 	varname "Default ErrorCode"
-	rect -658 -196 -472 -152
+	rect -220 -180 -34 -136
 	color 1 1 1 1
 	output
 		type Int
@@ -245,7 +245,7 @@ node
 	type Control
 	id 10326
 	name "Branch"
-	rect -697 332 -456 436
+	rect -269 856 -28 960
 	color 1 1 1 1
 	input
 		type Flow
@@ -271,7 +271,7 @@ node
 	type Macro
 	id 10336
 	name "IsRobotWork"
-	rect -952 424 -739 500
+	rect -524 948 -311 1024
 	color 1 1 1 1
 	input
 		type String
@@ -287,7 +287,7 @@ node
 	type Function
 	id 10341
 	name "ErrorState"
-	rect -376 240 -206 344
+	rect 52 764 222 868
 	color 1 1 1 1
 	input
 		type Flow
@@ -308,7 +308,7 @@ node
 	type Control
 	id 10346
 	name "Branch"
-	rect -328 444 -87 548
+	rect 100 968 341 1072
 	color 1 1 1 1
 	input
 		type Flow
@@ -335,7 +335,7 @@ node
 	id 10359
 	name "Int"
 	varname "0"
-	rect -668 572 -584 616
+	rect -240 1096 -156 1140
 	color 1 1 1 1
 	output
 		type Int
@@ -346,7 +346,7 @@ node
 	type Function
 	id 10746
 	name "ErrorState"
-	rect -8 240 162 344
+	rect 420 764 590 868
 	color 1 1 1 1
 	input
 		type Flow
@@ -367,7 +367,7 @@ node
 	type Operator
 	id 10089
 	name "=="
-	rect -95 0 56 72
+	rect 343 16 494 88
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Int
@@ -388,7 +388,7 @@ node
 	type Event
 	id 10371
 	name "AckMove Event"
-	rect -1182 344 -1048 504
+	rect -754 868 -620 1028
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -414,7 +414,7 @@ node
 	type Operator
 	id 10588
 	name "=="
-	rect -520 526 -369 598
+	rect -92 1050 59 1122
 	color 0.501961 0.764706 0.972549 1
 	input
 		type Int
@@ -435,7 +435,7 @@ node
 	type Function
 	id 10081
 	name "SetRobotWork"
-	rect -8 496 176 600
+	rect 420 1020 604 1124
 	color 1 1 1 1
 	input
 		type Flow
@@ -452,12 +452,236 @@ node
 		id 10084
 		name " "
 		links 
+node
+	type Event
+	id 10087
+	name "Dest Event"
+	rect -742 288 -610 420
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10088
+		name " "
+		links 10100 
+	output
+		type String
+		id 10093
+		name "Robot Name"
+		links 10096 10399 10668 
+	output
+		type Int
+		id 10094
+		name "Dest"
+		links 10669 
+node
+	type Macro
+	id 10095
+	name "IsRobotReady"
+	rect -546 412 -329 488
+	color 1 1 1 1
+	input
+		type String
+		id 10096
+		name "Robot Name"
+		links 10093 
+	output
+		type Bool
+		id 10097
+		name "Ready"
+		links 10101 
+node
+	type Control
+	id 10099
+	name "Branch"
+	rect -290 336 -49 440
+	color 1 1 1 1
+	input
+		type Flow
+		id 10100
+		name " "
+		links 10088 
+	input
+		type Bool
+		id 10101
+		name "Condition"
+		links 10097 
+	output
+		type Flow
+		id 10102
+		name "True"
+		links 10667 
+	output
+		type Flow
+		id 10103
+		name "False"
+		links 10107 
+node
+	type Function
+	id 10106
+	name "ErrorState"
+	rect 94 240 264 344
+	color 1 1 1 1
+	input
+		type Flow
+		id 10107
+		name " "
+		links 10103 
+	input
+		type Int
+		id 10108
+		name "ErrorCode"
+		links 
+	output
+		type Flow
+		id 10109
+		name " "
+		links 
+node
+	type Control
+	id 10123
+	name "Branch"
+	rect 541 460 782 564
+	color 1 1 1 1
+	input
+		type Flow
+		id 10124
+		name " "
+		links 10670 
+	input
+		type Bool
+		id 10125
+		name "Condition"
+		links 10132 
+	output
+		type Flow
+		id 10126
+		name "True"
+		links 10398 
+	output
+		type Flow
+		id 10127
+		name "False"
+		links 10403 
+node
+	type Operator
+	id 10129
+	name "=="
+	rect 343 572 494 644
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		id 10130
+		name "A"
+		links 10672 
+	input
+		type Int
+		id 10131
+		name "B"
+		links 10145 
+	output
+		type Bool
+		id 10132
+		name "O"
+		links 10125 
+node
+	type Variable
+	id 10144
+	name "Int"
+	varname "0"
+	rect 194 620 278 664
+	color 1 1 1 1
+	output
+		type Int
+		id 10145
+		name " "
+		links 10131 
+node
+	type Function
+	id 10397
+	name "SetRobotWork"
+	rect 878 508 1062 612
+	color 1 1 1 1
+	input
+		type Flow
+		id 10398
+		name " "
+		links 10126 
+	input
+		type String
+		id 10399
+		name "Robot Name"
+		links 10093 
+	output
+		type Flow
+		id 10400
+		name " "
+		links 
+node
+	type Function
+	id 10402
+	name "ErrorState"
+	rect 884 252 1054 356
+	color 1 1 1 1
+	input
+		type Flow
+		id 10403
+		name " "
+		links 10127 
+	input
+		type Int
+		id 10404
+		name "ErrorCode"
+		links 
+	output
+		type Flow
+		id 10405
+		name " "
+		links 
+node
+	type Function
+	id 10666
+	name "ReqMove"
+	rect 69 384 286 516
+	color 1 1 1 1
+	input
+		type Flow
+		id 10667
+		name " "
+		links 10102 
+	input
+		type String
+		id 10668
+		name "Robot Name"
+		links 10093 
+	input
+		type Int
+		id 10669
+		name "Dest"
+		links 10094 
+	output
+		type Flow
+		id 10670
+		name " "
+		links 10124 
+	output
+		type Int
+		id 10671
+		name "Dest"
+		links 
+	output
+		type Int
+		id 10672
+		name "Result"
+		links 10130 
 symbol
 	id 10050
 	value 0
 symbol
 	id 10059
 	value 1
+symbol
+	id 10145
+	value 0
 symbol
 	id 10360
 	value 0

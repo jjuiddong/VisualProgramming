@@ -184,7 +184,7 @@ void cVProgView::RenderSymbolTable()
 					break;
 				case vprog::ePinType::String:
 				{
-					Str128 tmpStr = value.str;
+					common::Str128 tmpStr = value.str;
 					if (ImGui::InputText("##varstring", tmpStr.m_str, tmpStr.SIZE))
 						value.str = tmpStr.c_str();
 				}

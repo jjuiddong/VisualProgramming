@@ -218,7 +218,7 @@ void cDebugView::RenderVariant(const StrId &name, INOUT variant_t &var)
 		break;
 	case VT_BSTR:
 	{
-		WStr128 wstr = (LPCTSTR)var.bstrVal;
+		common::WStr128 wstr = (LPCTSTR)var.bstrVal;
 		ImGui::TextUnformatted(wstr.str().c_str());
 	}
 	break;

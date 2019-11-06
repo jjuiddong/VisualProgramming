@@ -89,6 +89,7 @@ bool cGlobal::ReadVProgFile(const StrPath &fileName)
 // Get Current Mouse Pos 3D Location
 Vector2 cGlobal::GetMouse3DPos(const ImVec2 &mousePt)
 {
+	using namespace common;
 	const Ray ray = graphic::GetMainCamera().GetRay((int)mousePt.x, (int)mousePt.y);
 	const Plane ground(Vector3(0, 1, 0), 0);
 	const Vector3 tPos = ground.Pick(ray.orig, ray.dir);
@@ -101,6 +102,7 @@ Vector2 cGlobal::GetMouse3DPos(const ImVec2 &mousePt)
 // - zoom recovery
 Vector2 cGlobal::GetMouse3DOriginalPos(const ImVec2 &mousePt)
 {
+	using namespace common;
 	const Ray ray = graphic::GetMainCamera().GetRay((int)mousePt.x, (int)mousePt.y);
 	const Plane ground(Vector3(0, 1, 0), 0);
 	const float zoom = graphic::GetMainCamera().GetZoom();

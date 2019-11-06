@@ -176,6 +176,9 @@
     <ProjectReference Include="..\..\..\..\Common\Graphic11\Graphic11.vcxproj">
       <Project>{6e994653-a69c-4be2-b830-97676e805f29}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Common\Network2\Network2-VS2017.vcxproj">
+      <Project>{b98e9721-f7a3-4e2d-a7a1-7708cb2d0d6e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\DirectXTK\DirectXTK_Desktop_2017.vcxproj">
       <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
     </ProjectReference>

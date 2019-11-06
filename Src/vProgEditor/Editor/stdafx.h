@@ -6,7 +6,10 @@
 
 
 using common::StrId;
+using common::StrPath;
 using common::Vector3;
+using common::Vector2;
+namespace script = common::script;
 
 #include "global.h"
 extern cGlobal *g_global;

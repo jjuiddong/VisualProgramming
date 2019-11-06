@@ -40,6 +40,20 @@ node
 		name "u Layer"
 node
 	type Event
+	name "Dest Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Dest"
+node
+	type Event
 	name "AckMove Event"
 	rect -253 208 -72 312
 	color 1 0.501961 0.501961 1
@@ -165,6 +179,9 @@ node
 		type Flow
 		name " "
 	input
+		type String
+		name "Robot Name"
+	input
 		type Int
 		name "Dest"
 	output
@@ -172,10 +189,10 @@ node
 		name " "
 	output
 		type Int
-		name "Result"
+		name "Dest"
 	output
 		type Int
-		name "Dest"
+		name "Result"
 node
 	type Function
 	name "ReqGuideMove"
@@ -184,6 +201,9 @@ node
 	input
 		type Flow
 		name " "
+	input
+		type String
+		name "Robot Name"		
 	input
 		type Int
 		name "Dest"
@@ -207,6 +227,9 @@ node
 	input
 		type Flow
 		name " "
+	input
+		type String
+		name "Robot Name"		
 	input
 		type Int
 		name "Station"
@@ -234,6 +257,9 @@ node
 		type Flow
 		name " "
 	input
+		type String
+		name "Robot Name"		
+	input
 		type Int
 		name "Station"
 	input
@@ -259,6 +285,9 @@ node
 	input
 		type Flow
 		name " "
+	input
+		type String
+		name "Robot Name"		
 	input
 		type Int
 		name "ErrorCode"

@@ -96,6 +96,56 @@ seti "ErrorState-10341", "ErrorCode", val0
 #comment "flow", 10360, 10343
 call "ErrorState-10341"
 nop
+nop
+"Dest Event":
+#comment "flow", 10088, 10100
+gets "Dest Event", "Robot Name", val0
+sets "IsRobotReady-10095", "Robot Name", val0
+#comment "flow", 10093, 10096
+call "IsRobotReady-10095"
+getb "IsRobotReady-10095", "Ready", val0
+#comment "flow", 10097, 10101
+eqic val0, 0
+jnz "ErrorState-10106"
+#comment "flow", 10102, 10667
+gets "Dest Event", "Robot Name", val0
+sets "ReqMove-10666", "Robot Name", val0
+#comment "flow", 10093, 10668
+geti "Dest Event", "Dest", val0
+seti "ReqMove-10666", "Dest", val0
+#comment "flow", 10094, 10669
+call "ReqMove-10666"
+#comment "flow", 10670, 10124
+geti "ReqMove-10666", "Result", val8
+#comment "flow", 10672, 10130
+geti "Int-10144", " ", val9
+#comment "flow", 10145, 10131
+eqi val8, val9
+ldcmp val9
+setb "==-10129", "O", val9
+getb "==-10129", "O", val0
+#comment "flow", 10132, 10125
+eqic val0, 0
+jnz "ErrorState-10402"
+#comment "flow", 10126, 10398
+gets "Dest Event", "Robot Name", val0
+sets "SetRobotWork-10397", "Robot Name", val0
+#comment "flow", 10093, 10399
+call "SetRobotWork-10397"
+nop
+"ErrorState-10402":
+#comment "flow", 10127, 10403
+ldic val0, 0
+seti "ErrorState-10402", "ErrorCode", val0
+call "ErrorState-10402"
+nop
+"ErrorState-10106":
+#comment "flow", 10103, 10107
+ldic val0, 0
+seti "ErrorState-10106", "ErrorCode", val0
+call "ErrorState-10106"
+nop
 symboli "Int-10049", " ", 0
 symboli "Int-10058", " ", 1
+symboli "Int-10144", " ", 0
 symboli "Int-10359", " ", 0
