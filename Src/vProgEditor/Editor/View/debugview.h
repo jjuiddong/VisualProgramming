@@ -8,6 +8,7 @@
 
 class cDebugView : public framework::cDockWindow
 				 , public common::script::iFunctionCallback
+				 , public remotedbg::s2c_ProtocolHandler
 {
 public:
 	cDebugView(const string &name);
@@ -19,9 +20,14 @@ public:
 
 
 protected:
+	void RenderLocalDebugging();
+	void RenderRemoteDebugging();
 	void RenderEventTriggerList();
 	void RenderVariant(const StrId &name, INOUT variant_t &var);
 	bool ReadEventTriggerListFile(const StrPath &fileName);
+
+	// remote debugging protocol handler
+	virtual bool UpdateInformation(remotedbg::UpdateInformation_Packet &packet) override;
 
 	// interpreter callback function override
 	virtual int Function(common::script::cSymbolTable &symbolTable

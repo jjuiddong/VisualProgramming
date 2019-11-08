@@ -36,21 +36,17 @@ void cEditorView::OnRender(const float deltaSeconds)
 {
 	if (ImGui::Button("Open"))
 	{
-		StrPath fileName = "vprog.txt";
-		g_global->ReadVProgFile(fileName);
+		ReadFileDialog();
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save"))
 	{
-		g_global->m_editMgr.Write("vprog.txt");
+		WriteFileDialog();
 	}
 
-	//ImGui::SameLine();
-	//if (ImGui::Button("Show Flow"))
-	//{
-	//	g_global->m_editMgr.ShowFlow();
-	//}
+	ImGui::SameLine();
+	ImGui::TextUnformatted(m_fileName.c_str());
 
 	//RenderSimpleNode();
 	RenderBlueprint();
@@ -196,4 +192,43 @@ void cEditorView::RenderSimpleNode()
 void cEditorView::RenderBlueprint()
 {
 	g_global->m_editMgr.Render(GetRenderer());
+}
+
+
+bool cEditorView::ReadFileDialog()
+{
+	const StrPath path = common::OpenFileDialog(m_owner->getSystemHandle()
+		, { {L"VProg File (*.vprog)", L"*.vprog;"}
+		, {L"All File (*.*)", L"*.*"} });
+	if (!path.empty())
+	{
+		if (g_global->ReadVProgFile(path))
+			m_fileName = path;
+		else
+			::MessageBoxA(m_owner->getSystemHandle()
+				, "Error!! Read File", "ERR", MB_OK | MB_ICONERROR);
+	}
+	return false;
+}
+
+
+bool cEditorView::WriteFileDialog()
+{
+	const StrPath path = common::SaveFileDialog(m_owner->getSystemHandle()
+		, { {L"VProg File (*.vprog)", L"*.vprog"}
+		, {L"All File (*.*)", L"*.*"} });
+	if (!path.empty())
+	{
+		if (g_global->m_editMgr.Write(path))
+		{
+			::MessageBoxA(m_owner->getSystemHandle()
+				, "Success Save File", "CONFIRM", MB_OK | MB_ICONINFORMATION);
+		}
+		else
+		{
+			::MessageBoxA(m_owner->getSystemHandle()
+				, "Error!! Save File", "ERR", MB_OK | MB_ICONERROR);
+		}
+	}
+	return false;
 }

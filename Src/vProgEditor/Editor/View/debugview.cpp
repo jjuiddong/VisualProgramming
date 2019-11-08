@@ -70,64 +70,29 @@ void cDebugView::OnUpdate(const float deltaSeconds)
 
 void cDebugView::OnRender(const float deltaSeconds)
 {
-	if (ImGui::Button("Debug"))
-	{
-		if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
-			, "Debug?", "CONFIRM", MB_YESNO))
-		{
-			const StrPath fileName = "vprog.txt";
-			vprog::cVProgFile vprogFile;
-			vprogFile.Read(fileName);
-			common::script::cIntermediateCode code;
-			vprogFile.GenerateIntermediateCode(code);
-			if (!code.Write("il.txt"))
-				return;
-			if (!m_interpreter.Init("il.txt", this, this))
-				return;
-			if (!m_debugger.Init(&m_interpreter))
-				return;
-
-			m_remoteDebugger.Init(network2::cRemoteDebugger::eDebugMode::Remote
-				, "127.0.0.1", 55555, &m_debugger);
-			m_remoteDebugger.Start();
-
-			g_global->ReadVProgFile(fileName);
-
-			m_state = eState::RemoteDebug;
-		}
-	}
-
-	ImGui::SameLine();
-	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.1f, 0.1f, 1));
-	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.8f, 0.1f, 0.1f, 1));
-	ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.3f, 0.1f, 0.1f, 1));
-	if (ImGui::Button("Debug Cancel"))
-	{
-		if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
-			, "Debug Cancel?", "CONFIRM", MB_YESNO))
-		{
-			//m_debugger.Terminate();
-			m_remoteDebugger.Terminate();
-			g_global->m_codeView->ClearCode();
-		}
-	}
-	ImGui::PopStyleColor(3);
+	RenderLocalDebugging();
+	ImGui::Spacing();
+	RenderRemoteDebugging();
 
 	ImGui::Spacing();
 	ImGui::Separator();
 	ImGui::Spacing();
 
-	if (ImGui::Button("Step"))
+	if (ImGui::Button("Step (F10)"))
 	{
-		//m_debugger.OneStep();
-		m_remoteDebugger.OneStep();
+		if (eState::Debug == m_state)
+			m_debugger.OneStep();
+		else
+			m_remoteDebugger.OneStep();
 	}
 
 	ImGui::SameLine();
-	if (ImGui::Button("Run"))
+	if (ImGui::Button("Run (F5)"))
 	{
-		//m_debugger.Run();
-		m_remoteDebugger.DebugRun();
+		if (eState::Debug == m_state)
+			m_debugger.Run();
+		else
+			m_remoteDebugger.DebugRun();
 	}
 
 	ImGui::Spacing();
@@ -211,6 +176,176 @@ void cDebugView::OnRender(const float deltaSeconds)
 		}//~eState::RemoteDebug
 
 	}
+}
+
+
+// render local debugging information
+void cDebugView::RenderLocalDebugging()
+{
+	vprog::cEditManager &editMgr = g_global->m_editMgr;
+
+	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
+	if (ImGui::CollapsingHeader("Local Debugging"))
+	{
+		if (!editMgr.IsLoad())
+		{
+			ImGui::Text("No File to Debug");
+			ImGui::Spacing();
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+		else if (m_remoteDebugger.IsRun())
+		{
+			ImGui::Text("Now Remote Debugging");
+			ImGui::Spacing();
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+		else
+		{
+			if (ImGui::Button("Debugging"))
+			{
+				if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
+					, "Debug?", "CONFIRM", MB_YESNO))
+				{
+					const StrPath fileName = g_global->m_editView->m_fileName;
+					vprog::cVProgFile vprogFile;
+					vprogFile.Read(fileName);
+
+					StrPath icodeFileName = fileName.GetFileNameExceptExt();
+					icodeFileName += ".icode";
+					common::script::cIntermediateCode code;
+					vprogFile.GenerateIntermediateCode(code);
+					if (!code.Write(icodeFileName))
+						return;
+
+					m_debugger.Clear();
+					m_interpreter.Clear();
+
+					if (!m_interpreter.Init(icodeFileName, this, this))
+					{
+						::MessageBoxA(m_owner->getSystemHandle()
+							, "Error!! Read IntermediateCode", "ERROR"
+							, MB_OK | MB_ICONERROR);
+						return;
+					}
+
+					if (!m_debugger.Init(&m_interpreter))
+					{
+						::MessageBoxA(m_owner->getSystemHandle()
+							, "Error!! Debugger Initialize", "ERROR"
+							, MB_OK | MB_ICONERROR);
+						return;
+					}
+
+					m_state = eState::Debug;
+				}
+			} // ~button "Debug"
+		} //~if isload?
+
+		if (!m_remoteDebugger.IsRun()
+			&& m_debugger.IsLoad())
+		{
+			ImGui::SameLine();
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.1f, 0.1f, 1));
+			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.8f, 0.1f, 0.1f, 1));
+			ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.3f, 0.1f, 0.1f, 1));
+			if (ImGui::Button("Debug Cancel"))
+			{
+				if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
+					, "Debug Cancel?", "CONFIRM", MB_YESNO))
+				{
+					m_debugger.Terminate();
+					g_global->m_codeView->ClearCode();
+				}
+			}
+			ImGui::PopStyleColor(3);
+		} // ~debugger isLoad?
+	}//~imgui::header
+}
+
+
+void cDebugView::RenderRemoteDebugging()
+{
+	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
+	if (ImGui::CollapsingHeader("Remote Debugging"))
+	{
+		static Str16 ip = "127.0.0.1";
+		static int port = 55555;
+
+		if (m_remoteDebugger.IsRun() && m_debugger.IsLoad())
+		{
+			ImGui::TextUnformatted("- Debugger Already Run -");
+
+		}
+		else
+		{
+			if (m_remoteDebugger.IsRun())
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 0.1f, 1));
+				ImGui::Text("- Connect Remote Debugger -");
+				ImGui::Text("%s:%d", ip.c_str(), port);
+				ImGui::Spacing();
+				ImGui::PopStyleColor();
+			}
+			else
+			{
+				ImGui::TextUnformatted("- Remote Debugger Host IP Setting -");
+
+				ImGui::PushItemWidth(100);
+				ImGui::TextUnformatted("IP:     ");
+				ImGui::SameLine();
+				ImGui::InputText("##hostip", ip.m_str, ip.SIZE);
+				ImGui::TextUnformatted("Port: ");
+				ImGui::SameLine();
+				ImGui::InputInt("##port", &port);
+				ImGui::PopItemWidth();
+				ImGui::Spacing();
+
+				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.1f, 0.5f, 0.1f, 1));
+				ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.1f, 0.8f, 0.1f, 1));
+				ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.1f, 0.3f, 0.1f, 1));
+				if (ImGui::Button("Connect & Debugging"))
+				{
+					m_remoteDebugger.Init(network2::cRemoteDebugger::eDebugMode::Remote
+						, ip, port, &m_debugger, this);
+					if (m_remoteDebugger.Start())
+					{
+						//g_global->ReadVProgFile(fileName);
+						m_state = eState::RemoteDebug;
+					}
+					else
+					{
+						::MessageBoxA(m_owner->getSystemHandle()
+							, "Error!! Connect Host Server", "ERROR"
+							, MB_OK | MB_ICONERROR);
+					}
+
+				}
+				ImGui::PopStyleColor(3);
+			}
+		} //~debugger isload?
+
+		if (m_remoteDebugger.IsRun())
+		{
+			//ImGui::SameLine();
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.1f, 0.1f, 1));
+			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.8f, 0.1f, 0.1f, 1));
+			ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.3f, 0.1f, 0.1f, 1));
+			if (ImGui::Button("Debug Cancel"))
+			{
+				if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
+					, "Debug Cancel?", "CONFIRM", MB_YESNO))
+				{
+					m_remoteDebugger.Terminate();
+					g_global->m_codeView->ClearCode();
+				}
+			}
+			ImGui::PopStyleColor(3);
+		} // ~debugger isLoad?
+
+
+	} // ~imgui::header
 }
 
 
@@ -410,6 +545,40 @@ bool cDebugView::ReadEventTriggerListFile(const StrPath &fileName)
 	return true;
 }
 
+
+// remote debugging protocol handler
+bool cDebugView::UpdateInformation(remotedbg::UpdateInformation_Packet &packet)
+{ 
+	// read vprog file, icode file
+	// intermedatecode filename -> vprog filename
+	// change file extends *.icode -> *.vprog
+	StrPath icodeFileName = packet.fileName;
+	StrPath vprogFileName = icodeFileName.GetFileNameExceptExt();
+	vprogFileName += ".vprog";
+	g_global->ReadVProgFile(vprogFileName);
+
+	// run interpreter, debugger to simulate host intepreter
+	m_debugger.Clear();
+	m_interpreter.Clear();
+
+	if (!m_interpreter.Init(icodeFileName, this, this))
+	{
+		//::MessageBoxA(m_owner->getSystemHandle()
+		//	, "Error!! Read IntermediateCode", "ERROR"
+		//	, MB_OK | MB_ICONERROR);
+		return true;
+	}
+
+	if (!m_debugger.Init(&m_interpreter))
+	{
+		//::MessageBoxA(m_owner->getSystemHandle()
+		//	, "Error!! Debugger Initialize", "ERROR"
+		//	, MB_OK | MB_ICONERROR);
+		return true;
+	}
+
+	return true; 
+}
 
 
 // interpreter callback function

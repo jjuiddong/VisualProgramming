@@ -15,8 +15,14 @@ public:
 	virtual void OnUpdate(const float deltaSeconds) override;
 	virtual void OnRender(const float deltaSeconds) override;
 
-	
+
 protected:
 	void RenderSimpleNode();
 	void RenderBlueprint();
+	bool ReadFileDialog();
+	bool WriteFileDialog();
+
+
+public:
+	StrPath m_fileName;
 };
