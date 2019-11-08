@@ -331,3 +331,7 @@ ASALocalRun/
 Package/errlog.txt
 Package/log.txt
 Package/imgui.ini
+Package/Editor.exe
+Package/Editord.exe
+Src/vProgEditor/Editor/errlog.txt
+Src/vProgEditor/Editor/log.txt
