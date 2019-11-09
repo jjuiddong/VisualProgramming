@@ -28,15 +28,24 @@ void cCodeView::OnUpdate(const float deltaSeconds)
 
 void cCodeView::OnRender(const float deltaSeconds)
 {
+	// show icode filename
+	ImGui::TextUnformatted(m_code.m_fileName.c_str());
+
+	// show icode
 	if (ImGui::BeginChild("iCode Child Window", ImVec2(0, 0), true))
 	{
 		for (uint i = 0; i < m_strs.size(); ++i)
 		{
 			auto &str = m_strs[i];
 			bool isSelect = (m_highlightLine == (int)i);
+			const bool isComment = (string::npos != str.find("#comment"));
+			if (isComment)
+				ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 0.4f));
 			ImGui::Selectable(str.c_str(), &isSelect);
-			if (isSelect 
-				&& (m_movScrollLine != m_highlightLine))
+			if (isComment)
+				ImGui::PopStyleColor();
+
+			if (isSelect && (m_movScrollLine != m_highlightLine))
 			{
 				ImGui::SetScrollHere();
 				m_movScrollLine = m_highlightLine;

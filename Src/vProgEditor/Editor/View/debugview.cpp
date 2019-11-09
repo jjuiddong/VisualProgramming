@@ -196,7 +196,7 @@ void cDebugView::RenderLocalDebugging()
 		}
 		else if (m_remoteDebugger.IsRun())
 		{
-			ImGui::Text("Now Remote Debugging");
+			ImGui::Text("Remote Debugger Running");
 			ImGui::Spacing();
 			ImGui::Spacing();
 			ImGui::Spacing();
@@ -208,7 +208,7 @@ void cDebugView::RenderLocalDebugging()
 				if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
 					, "Debug?", "CONFIRM", MB_YESNO))
 				{
-					const StrPath fileName = g_global->m_editView->m_fileName;
+					const StrPath fileName = g_global->m_editMgr.m_fileName;
 					vprog::cVProgFile vprogFile;
 					vprogFile.Read(fileName);
 
@@ -275,8 +275,8 @@ void cDebugView::RenderRemoteDebugging()
 
 		if (m_remoteDebugger.IsRun() && m_debugger.IsLoad())
 		{
-			ImGui::TextUnformatted("- Debugger Already Run -");
-
+			ImGui::TextUnformatted("- Debugger Running -");
+			ImGui::Spacing();
 		}
 		else
 		{

@@ -46,7 +46,7 @@ void cEditorView::OnRender(const float deltaSeconds)
 	}
 
 	ImGui::SameLine();
-	ImGui::TextUnformatted(m_fileName.c_str());
+	ImGui::TextUnformatted(g_global->m_editMgr.m_fileName.c_str());
 
 	//RenderSimpleNode();
 	RenderBlueprint();
@@ -202,9 +202,7 @@ bool cEditorView::ReadFileDialog()
 		, {L"All File (*.*)", L"*.*"} });
 	if (!path.empty())
 	{
-		if (g_global->ReadVProgFile(path))
-			m_fileName = path;
-		else
+		if (!g_global->ReadVProgFile(path))
 			::MessageBoxA(m_owner->getSystemHandle()
 				, "Error!! Read File", "ERR", MB_OK | MB_ICONERROR);
 	}

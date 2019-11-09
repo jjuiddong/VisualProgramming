@@ -24,5 +24,4 @@ protected:
 
 
 public:
-	StrPath m_fileName;
 };
