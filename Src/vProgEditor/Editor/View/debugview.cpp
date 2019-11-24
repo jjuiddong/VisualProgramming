@@ -441,107 +441,51 @@ bool cDebugView::ReadEventTriggerListFile(const StrPath &fileName)
 {
 	m_events.clear();
 
-	using namespace std;
-	ifstream ifs(fileName.c_str());
-	if (!ifs.is_open())
-		return false;
+	vector<common::cSimpleData2::sRule> rules;
+	rules.push_back({ 0, "event_trigger", 1, -1 });
+	rules.push_back({ 1, "input", 2, -1 });
+	rules.push_back({ 2, "input", 2, 1 });
+	rules.push_back({ 2, "event_trigger", 1, 0 });
+	common::cSimpleData2 sdata(rules);
+	sdata.Read(fileName);
+	RETV(!sdata.m_root, false);
 
-	sEventTrigger evt;
-	StrId varName;
-	variant_t var;
-	var.vt = VT_EMPTY;
-
-	int state = 0;
-	string line;
-	while (getline(ifs, line))
+	for (auto &p : sdata.m_root->children)
 	{
-		common::trim(line);
-		vector<string> toks;
-		common::tokenizer_space(line, toks);
-		if (toks.empty())
-			continue;
-
-		switch (state)
+		if (p->name == "event_trigger")
 		{
-		case 0:
-			if (toks[0] == "event_trigger")
+			sEventTrigger evt;
+			evt.name = sdata.Get<string>(p, "name", "Event");
+			evt.evtName = sdata.Get<string>(p, "eventname", "Event");
+			for (auto &c : p->children)
 			{
-				state = 1;
-				evt.clear();
-			}
-			break;
+				if (c->name == "input")
+				{
+					variant_t var;
+					StrId varName = sdata.Get<string>(c, "name", "Input");
+					StrId varType = sdata.Get<string>(c, "type", "String");
+					string value = sdata.Get<string>(c, "value", "0");
+					if (varType == "Bool")
+						var.vt = VT_BOOL;
+					else if (varType == "Int")
+						var.vt = VT_INT;
+					else if (varType == "Float")
+						var.vt = VT_R4;
+					else if (varType == "String")
+						var.vt = VT_BSTR;
+					else
+						assert(!"cDebugView::ReadEventTriggerListFile()");
+					var = common::str2variant(var.vt, value);
 
-		case 1: // event parsing
-			if ((toks[0] == "name") && (toks.size() >= 2))
-			{
-				evt.name = toks[1];
-			}
-			if ((toks[0] == "eventname") && (toks.size() >= 2))
-			{
-				evt.evtName = toks[1];
-			}
-			else if (toks[0] == "input")
-			{
-				state = 2;
-				varName.clear();
-			}
-			break;
+					if (!varName.empty())
+						evt.vars[varName] = common::copyvariant(var);
+					common::clearvariant(var);
+				}
+			} //~for input
+			m_events.push_back(evt);
+		} //~if event_trigger
+	} //~for root children
 
-		case 2: // input parsing
-			if ((toks[0] == "type") && (toks.size() >= 2))
-			{
-				if (toks[1] == "Bool")
-					var.vt = VT_BOOL;
-				else if (toks[1] == "Int")
-					var.vt = VT_INT;
-				else if (toks[1] == "Float")
-					var.vt = VT_R4;
-				else if (toks[1] == "String")
-					var.vt = VT_BSTR;
-				else
-					assert(!"cDebugView::ReadEventTriggerListFile()");
-			}
-			else if ((toks[0] == "name") && (toks.size() >= 2))
-			{
-				varName = toks[1];
-			}
-			else if ((toks[0] == "value") && (toks.size() >= 2))
-			{
-				var = common::str2variant(var.vt, toks[1]);
-			}
-			else if (toks[0] == "input")
-			{
-				if (!varName.empty())
-					evt.vars[varName] = common::copyvariant(var);
-
-				state = 2;
-				varName.clear();
-				common::clearvariant(var);
-			}
-			else if ((toks[0] == "event_trigger"))
-			{
-				if (!varName.empty())
-					evt.vars[varName] = common::copyvariant(var);
-
-				if (!evt.name.empty())
-					m_events.push_back(evt);
-
-				state = 1;
-				evt.clear();
-				common::clearvariant(var);
-			}
-			break;
-		} //~switch
-	} //~while
-
-	if (!varName.empty())
-		evt.vars[varName] = common::copyvariant(var);
-
-	if (!evt.name.empty())
-		m_events.push_back(evt);
-
-	evt.clear();
-	common::clearvariant(var);
 	return true;
 }
 
