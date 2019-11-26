@@ -119,7 +119,7 @@ void cVProgView::RenderOperatorList()
 				if (ImGui::IsMouseDoubleClicked(0))
 				{
 					if (vprog::cNode *node
-						= editMgr.Generate_ReservedDefinition(def.m_name, def.m_varName))
+						= editMgr.Generate_ReservedDefinition(def.m_name, def.m_desc))
 					{
 						// 화면의 중앙에 출력되게 한다.
 						namespace ed = ax::NodeEditor;
@@ -146,7 +146,7 @@ void cVProgView::RenderSymbolTable()
 	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
 	if (ImGui::CollapsingHeader("Symbol Table"))
 	{
-		for (auto &kv : editMgr.m_symbTable.m_symbols)
+		for (auto &kv : editMgr.m_symbTable.m_vars)
 		{
 			const ed::PinId pid = kv.first;
 			vprog::cSymbolTable::sValue &value = kv.second;
@@ -164,9 +164,9 @@ void cVProgView::RenderSymbolTable()
 
 			StrId treeId;
 			treeId.Format("(%d)", node->m_id.Get());
-			if (ImGui::TreeNodeEx(treeId.c_str(), 0, node->m_varName.c_str()))
+			if (ImGui::TreeNodeEx(treeId.c_str(), 0, pin->name.c_str()))
 			{
-				ImGui::InputText("##varname", node->m_varName.m_str, node->m_varName.SIZE);
+				ImGui::InputText("##varname", pin->name.m_str, pin->name.SIZE);
 
 				switch (pin->type)
 				{

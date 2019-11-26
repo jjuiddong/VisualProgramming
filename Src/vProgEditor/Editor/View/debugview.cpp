@@ -238,6 +238,8 @@ void cDebugView::RenderLocalDebugging()
 						return;
 					}
 
+					g_global->m_codeView->ReadIntermediateFile(icodeFileName);
+
 					m_state = eState::Debug;
 				}
 			} // ~button "Debug"
@@ -569,6 +571,11 @@ int cDebugView::Function(common::script::cSymbolTable &symbolTable
 		variant_t errCode;
 		symbolTable.Get(scopeName, "ErrorCode", errCode);
 		common::clearvariant(errCode);
+	}
+	else if (funcName == "Print String")
+	{
+		const string str = symbolTable.Get<string>(scopeName, "In String");
+		g_global->m_consoleView->AddString("%s", str.c_str());
 	}
 
 	g_global->m_consoleView->AddString("call %s()", funcName.c_str());

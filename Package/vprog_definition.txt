@@ -70,6 +70,23 @@ node
 		type Int
 		name "Result"
 node
+	type Event
+	name "AckEndMove Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Dest"
+	output
+		type Int
+		name "Result"
+node
 	type Control
 	name "Branch"
 	rect -360 336 -119 440
@@ -86,6 +103,17 @@ node
 	output
 		type Flow
 		name "False"
+node
+	type Control
+	name "Switch"
+	rect -360 336 -119 440
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type NotDef
+		name "Selection"
 node
 	type Control
 	name "While"
@@ -169,7 +197,21 @@ node
 		name "Robot Name"
 	output
 		type Flow
-		name " "		
+		name " "
+node
+	type Function
+	name "SetRobotReady"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	output
+		type Flow
+		name " "
 node
 	type Function
 	name "ReqMove"
@@ -258,7 +300,7 @@ node
 		name " "
 	input
 		type String
-		name "Robot Name"		
+		name "Robot Name"
 	input
 		type Int
 		name "Station"
@@ -517,7 +559,7 @@ node
 	color 1 1 1 1
 	output
 		type Int
-		name " "
+		name "Int"
 node
 	type Variable
 	name "Bool"
@@ -525,7 +567,7 @@ node
 	color 1 1 1 1
 	output
 		type Bool
-		name " "
+		name "Bool"
 node
 	type Variable
 	name "Float"
@@ -533,7 +575,7 @@ node
 	color 1 1 1 1
 	output
 		type Float
-		name " "
+		name "Float"
 node
 	type Variable
 	name "String"
@@ -541,6 +583,30 @@ node
 	color 1 1 1 1
 	output
 		type String
-		name " "
-
-
+		name "String"
+define
+	type Enum
+	name "SequenceType"
+	attr
+		name "Move"
+		value 0
+	attr
+		name "Loading"
+		value 1
+	attr
+		name "Unloading"
+		value 2
+	attr
+		name "Picking"
+		value 3
+	attr
+		name "Finish"
+		value 4
+node
+	type Variable
+	name "SequenceType"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type SequenceType
+		name "SequenceType"
