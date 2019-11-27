@@ -374,6 +374,20 @@ node
 		type Flow
 		name " "
 node
+	type Function
+	name "Set"
+	rect 168 316 360 504
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type NotDef
+		name "Empty"
+	output
+		type Flow
+		name " "		
+node
 	type Operator
 	name "<"
 	varname "Float"
