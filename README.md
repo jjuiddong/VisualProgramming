@@ -21,3 +21,5 @@ Visual Programming(vProg) with VS2017 C++, ImGui, imgui-node-editor
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-11-09.jpg?raw=true)
 Switch Case
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-11-26-1.jpg?raw=true)
+While
+![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-11-27-1.jpg?raw=true)
