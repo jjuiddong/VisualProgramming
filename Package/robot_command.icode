@@ -11,7 +11,7 @@ call "IsRobotReady-10161"
 getb "IsRobotReady-10161", "Ready", val0
 #comment "flow", 10163, 10021
 eqic val0, 0
-jnz "ErrorState-10027"
+jnz "ErrorState-10364"
 #comment "flow", 10022, 10033
 geti "SeqWork Event", "Loading", val0
 seti "GetFrontNode-10039", "Node", val0
@@ -32,26 +32,32 @@ setb "==-10089", "O", val9
 getb "==-10089", "O", val0
 #comment "flow", 10092, 10072
 eqic val0, 0
-jnz "ErrorState-10077"
+jnz "ErrorState-10377"
 #comment "flow", 10073, 10330
 gets "SeqWork Event", "Robot Name", val0
 sets "SetRobotWork-10329", "Robot Name", val0
 #comment "flow", 10013, 10331
 call "SetRobotWork-10329"
 nop
-"ErrorState-10077":
-#comment "flow", 10074, 10078
+"ErrorState-10377":
+#comment "flow", 10074, 10378
+gets "SeqWork Event", "Robot Name", val0
+sets "ErrorState-10377", "Robot Name", val0
+#comment "flow", 10013, 10379
 geti "ReqMove-10032", "Result", val0
-seti "ErrorState-10077", "ErrorCode", val0
-#comment "flow", 10036, 10079
-call "ErrorState-10077"
+seti "ErrorState-10377", "ErrorCode", val0
+#comment "flow", 10036, 10380
+call "ErrorState-10377"
 nop
-"ErrorState-10027":
-#comment "flow", 10023, 10028
+"ErrorState-10364":
+#comment "flow", 10023, 10365
+gets "SeqWork Event", "Robot Name", val0
+sets "ErrorState-10364", "Robot Name", val0
+#comment "flow", 10013, 10366
 geti "Int-10058", " ", val0
-seti "ErrorState-10027", "ErrorCode", val0
-#comment "flow", 10059, 10029
-call "ErrorState-10027"
+seti "ErrorState-10364", "ErrorCode", val0
+#comment "flow", 10059, 10367
+call "ErrorState-10364"
 nop
 nop
 "AckMove Event":
@@ -63,7 +69,7 @@ call "IsRobotWork-10336"
 getb "IsRobotWork-10336", "Work", val0
 #comment "flow", 10338, 10328
 eqic val0, 0
-jnz "ErrorState-10341"
+jnz "ErrorState-10313"
 #comment "flow", 10333, 10347
 geti "AckMove Event", "Result", val8
 #comment "flow", 10375, 10589
@@ -75,26 +81,32 @@ setb "==-10588", "O", val9
 getb "==-10588", "O", val0
 #comment "flow", 10591, 10348
 eqic val0, 0
-jnz "ErrorState-10746"
+jnz "ErrorState-10321"
 #comment "flow", 10349, 10082
 gets "AckMove Event", "Robot Name", val0
 sets "SetRobotWork-10081", "Robot Name", val0
 #comment "flow", 10373, 10083
 call "SetRobotWork-10081"
 nop
-"ErrorState-10746":
-#comment "flow", 10350, 10747
+"ErrorState-10321":
+#comment "flow", 10350, 10322
+gets "AckMove Event", "Robot Name", val0
+sets "ErrorState-10321", "Robot Name", val0
+#comment "flow", 10373, 10323
 geti "AckMove Event", "Result", val0
-seti "ErrorState-10746", "ErrorCode", val0
-#comment "flow", 10375, 10748
-call "ErrorState-10746"
+seti "ErrorState-10321", "ErrorCode", val0
+#comment "flow", 10375, 10324
+call "ErrorState-10321"
 nop
-"ErrorState-10341":
-#comment "flow", 10334, 10342
-geti "Int-10359", " ", val0
-seti "ErrorState-10341", "ErrorCode", val0
-#comment "flow", 10360, 10343
-call "ErrorState-10341"
+"ErrorState-10313":
+#comment "flow", 10334, 10314
+gets "AckMove Event", "Robot Name", val0
+sets "ErrorState-10313", "Robot Name", val0
+#comment "flow", 10373, 10315
+geti "AckMove Event", "Result", val0
+seti "ErrorState-10313", "ErrorCode", val0
+#comment "flow", 10375, 10316
+call "ErrorState-10313"
 nop
 nop
 "Dest Event":
@@ -106,7 +118,7 @@ call "IsRobotReady-10095"
 getb "IsRobotReady-10095", "Ready", val0
 #comment "flow", 10097, 10101
 eqic val0, 0
-jnz "ErrorState-10106"
+jnz "ErrorState-10341"
 #comment "flow", 10102, 10667
 gets "Dest Event", "Robot Name", val0
 sets "ReqMove-10666", "Robot Name", val0
@@ -126,26 +138,84 @@ setb "==-10129", "O", val9
 getb "==-10129", "O", val0
 #comment "flow", 10132, 10125
 eqic val0, 0
-jnz "ErrorState-10402"
+jnz "ErrorState-10354"
 #comment "flow", 10126, 10398
 gets "Dest Event", "Robot Name", val0
 sets "SetRobotWork-10397", "Robot Name", val0
 #comment "flow", 10093, 10399
 call "SetRobotWork-10397"
 nop
-"ErrorState-10402":
-#comment "flow", 10127, 10403
-ldic val0, 0
-seti "ErrorState-10402", "ErrorCode", val0
-call "ErrorState-10402"
+"ErrorState-10354":
+#comment "flow", 10127, 10355
+gets "Dest Event", "Robot Name", val0
+sets "ErrorState-10354", "Robot Name", val0
+#comment "flow", 10093, 10356
+geti "ReqMove-10666", "Result", val0
+seti "ErrorState-10354", "ErrorCode", val0
+#comment "flow", 10672, 10357
+call "ErrorState-10354"
 nop
-"ErrorState-10106":
-#comment "flow", 10103, 10107
-ldic val0, 0
-seti "ErrorState-10106", "ErrorCode", val0
-call "ErrorState-10106"
+"ErrorState-10341":
+#comment "flow", 10103, 10342
+gets "Dest Event", "Robot Name", val0
+sets "ErrorState-10341", "Robot Name", val0
+#comment "flow", 10093, 10343
+geti "Dest Event", "Dest", val0
+seti "ErrorState-10341", "ErrorCode", val0
+#comment "flow", 10094, 10344
+call "ErrorState-10341"
+nop
+nop
+"AckEndMove Event":
+#comment "flow", 10141, 10151
+gets "AckEndMove Event", "Robot Name", val0
+sets "IsRobotWork-10147", "Robot Name", val0
+#comment "flow", 10142, 10148
+call "IsRobotWork-10147"
+getb "IsRobotWork-10147", "Work", val0
+#comment "flow", 10149, 10152
+eqic val0, 0
+jnz "ErrorState-10158"
+#comment "flow", 10153, 10168
+geti "AckEndMove Event", "Result", val8
+#comment "flow", 10146, 10174
+geti "Int-10179", " ", val9
+#comment "flow", 10180, 10175
+eqi val8, val9
+ldcmp val9
+setb "==-10173", "O", val9
+getb "==-10173", "O", val0
+#comment "flow", 10176, 10169
+eqic val0, 0
+jnz "ErrorState-10304"
+#comment "flow", 10170, 10300
+gets "AckEndMove Event", "Robot Name", val0
+sets "SetRobotReady-10299", "Robot Name", val0
+#comment "flow", 10142, 10301
+call "SetRobotReady-10299"
+nop
+"ErrorState-10304":
+#comment "flow", 10171, 10305
+gets "AckEndMove Event", "Robot Name", val0
+sets "ErrorState-10304", "Robot Name", val0
+#comment "flow", 10142, 10306
+geti "AckEndMove Event", "Result", val0
+seti "ErrorState-10304", "ErrorCode", val0
+#comment "flow", 10146, 10307
+call "ErrorState-10304"
+nop
+"ErrorState-10158":
+#comment "flow", 10154, 10159
+gets "AckEndMove Event", "Robot Name", val0
+sets "ErrorState-10158", "Robot Name", val0
+#comment "flow", 10142, 10160
+geti "AckEndMove Event", "Result", val0
+seti "ErrorState-10158", "ErrorCode", val0
+#comment "flow", 10146, 10164
+call "ErrorState-10158"
 nop
 symboli "Int-10049", " ", 0
 symboli "Int-10058", " ", 1
 symboli "Int-10144", " ", 0
+symboli "Int-10179", " ", 0
 symboli "Int-10359", " ", 0

@@ -1,0 +1,60 @@
+nop
+"main":
+nop
+nop
+"SeqWork Event":
+#comment "flow", 10133, 10128
+"While-10127":
+geti "Int-10032", "Count", val8
+#comment "flow", 10033, 10120
+geti "Int-10125", "100", val9
+#comment "flow", 10126, 10121
+lesi val8, val9
+ldcmp val9
+setb "<-10119", "O", val9
+getb "<-10119", "O", val0
+#comment "flow", 10122, 10129
+eqic val0, 0
+jnz "Print String-10062"
+#comment "flow", 10131, 10043
+geti "Int-10032", "Count", val8
+#comment "flow", 10033, 10047
+geti "Int-10051", "Inc1", val9
+#comment "flow", 10052, 10048
+addi val8, val9
+seti "+-10046", "O", val9
+geti "+-10046", "O", val0
+seti "Set-10042", "Count", val0
+#comment "flow", 10049, 10044
+seti "Int-10032", "Count", val0
+#comment "flow", 10045, 10145
+gets "String-10149", "String", val0
+sets "Print String-10144", "In String", val0
+#comment "flow", 10150, 10146
+call "Print String-10144"
+jmp "While-10127"
+nop
+"Print String-10062":
+#comment "flow", 10130, 10063
+gets "String-10067", "String2", val0
+sets "Print String-10062", "In String", val0
+#comment "flow", 10068, 10064
+call "Print String-10062"
+nop
+nop
+"Dest Event":
+#comment "flow", 10027, 10095
+getb "Bool-10030", "CloseLoop", val0
+setb "Set-10094", "CloseLoop", val0
+#comment "flow", 10031, 10096
+setb "Bool-10030", "CloseLoop", val0
+nop
+nop
+"blank":
+nop
+symbolb "Bool-10030", "CloseLoop", 0
+symboli "Int-10032", "Count", 0
+symboli "Int-10051", "Inc1", 1
+symboli "Int-10125", "100", 100
+symbols "String-10067", "String2", "Finish"
+symbols "String-10149", "String", "Loop Print"

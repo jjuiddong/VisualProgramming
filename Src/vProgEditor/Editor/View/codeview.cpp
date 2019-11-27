@@ -197,6 +197,14 @@ string cCodeView::ConvertInstructionToString(const common::script::sInstruction 
 	case script::eCommand::grf:
 	case script::eCommand::greqi:
 	case script::eCommand::greqf:
+	case script::eCommand::addi:
+	case script::eCommand::subi:
+	case script::eCommand::muli:
+	case script::eCommand::divi:
+	case script::eCommand::addf:
+	case script::eCommand::subf:
+	case script::eCommand::mulf:
+	case script::eCommand::divf:
 		ss << common::format("val%d", inst.reg1);
 		ss << ", " << common::format("val%d", inst.reg2);
 		break;

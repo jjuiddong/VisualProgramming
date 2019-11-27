@@ -127,10 +127,10 @@ node
 		name "Condition"
 	output
 		type Flow
-		name "Exit"
+		name "Loop"
 	output
 		type Flow
-		name "Loop"
+		name "Exit"
 node
 	type Control
 	name "Do N"
@@ -386,11 +386,11 @@ node
 		name "Empty"
 	output
 		type Flow
-		name " "		
+		name " "
 node
 	type Operator
 	name "<"
-	varname "Float"
+	desc "Float"
 	rect 366 652 470 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -405,7 +405,7 @@ node
 node
 	type Operator
 	name "<="
-	varname "Float"
+	desc "Float"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -420,7 +420,7 @@ node
 node
 	type Operator
 	name ">"
-	varname "Float"
+	desc "Float"
 	rect 366 652 470 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -435,7 +435,7 @@ node
 node
 	type Operator
 	name ">="
-	varname "Float"
+	desc "Float"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -450,7 +450,7 @@ node
 node
 	type Operator
 	name "=="
-	varname "Float"
+	desc "Float"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -465,7 +465,7 @@ node
 node
 	type Operator
 	name "<"
-	varname "Int"
+	desc "Int"
 	rect 366 652 470 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -480,7 +480,7 @@ node
 node
 	type Operator
 	name "<="
-	varname "Int"
+	desc "Int"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -495,7 +495,7 @@ node
 node
 	type Operator
 	name ">"
-	varname "Int"
+	desc "Int"
 	rect 366 652 470 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -510,7 +510,7 @@ node
 node
 	type Operator
 	name ">="
-	varname "Int"
+	desc "Int"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -525,7 +525,7 @@ node
 node
 	type Operator
 	name "=="
-	varname "Int"
+	desc "Int"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -540,7 +540,7 @@ node
 node
 	type Operator
 	name "=="
-	varname "Bool"
+	desc "Bool"
 	rect 144 652 263 724
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -551,7 +551,128 @@ node
 		name "B"
 	output
 		type Bool
-		name "O"		
+		name "O"
+node
+	type Operator
+	name "+"
+	desc "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Int
+		name "O"
+node
+	type Operator
+	name "-"
+	desc "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Int
+		name "O"
+node
+	type Operator
+	name "X"
+	desc "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Int
+		name "O"
+node
+	type Operator
+	name "/"
+	desc "Int"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		name "A"
+	input
+		type Int
+		name "B"
+	output
+		type Int
+		name "O"
+node
+	type Operator
+	name "+"
+	desc "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Float
+		name "O"
+node
+	type Operator
+	name "-"
+	desc "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Float
+		name "O"
+node
+	type Operator
+	name "X"
+	desc "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Float
+		name "O"
+node
+	type Operator
+	name "/"
+	desc "Float"
+	rect 144 652 263 724
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Float
+		name "A"
+	input
+		type Float
+		name "B"
+	output
+		type Float
+		name "O"
+
 node
 	type Function
 	name "Print String"

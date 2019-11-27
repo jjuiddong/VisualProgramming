@@ -1,0 +1,313 @@
+node
+	type Control
+	id 10127
+	name "While"
+	desc "While"
+	rect -1178 1104 -984 1208
+	color 1 1 1 1
+	input
+		type Flow
+		id 10128
+		name " "
+		links 10133 
+	input
+		type Bool
+		id 10129
+		name "Condition"
+		links 10122 
+	output
+		type Flow
+		id 10130
+		name "Exit"
+		links 10063 
+	output
+		type Flow
+		id 10131
+		name "Loop"
+		links 10043 
+node
+	type Event
+	id 10132
+	name "SeqWork Event"
+	desc "SeqWork Event"
+	rect -1917 1024 -1784 1268
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10133
+		name " "
+		links 10128 
+	output
+		type String
+		id 10134
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10135
+		name "Loading"
+		links 
+	output
+		type Int
+		id 10136
+		name "l Layer"
+		links 
+	output
+		type Int
+		id 10137
+		name "Picking"
+		links 
+	output
+		type Int
+		id 10138
+		name "Unloading"
+		links 
+	output
+		type Int
+		id 10139
+		name "u Layer"
+		links 
+node
+	type Function
+	id 10144
+	name "Print String"
+	desc "Print String"
+	rect -312 1296 -153 1400
+	color 1 1 1 1
+	input
+		type Flow
+		id 10145
+		name " "
+		links 10045 
+	input
+		type String
+		id 10146
+		name "In String"
+		links 10150 
+	output
+		type Flow
+		id 10147
+		name " "
+		links 
+node
+	type Variable
+	id 10149
+	name "String"
+	desc "String"
+	rect -592 1392 -361 1436
+	color 1 1 1 1
+	output
+		type String
+		id 10150
+		name "String"
+		links 10146 
+node
+	type Event
+	id 10026
+	name "Dest Event"
+	desc "Dest Event"
+	rect -1932 1396 -1800 1528
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10027
+		name " "
+		links 10095 
+	output
+		type String
+		id 10028
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10029
+		name "Dest"
+		links 
+node
+	type Variable
+	id 10030
+	name "Bool"
+	desc "Bool"
+	rect -1726 1548 -1576 1592
+	color 1 1 1 1
+	output
+		type Bool
+		id 10031
+		name "CloseLoop"
+		links 10096 
+node
+	type Variable
+	id 10032
+	name "Int"
+	desc "Int"
+	rect -1685 1180 -1560 1224
+	color 1 1 1 1
+	output
+		type Int
+		id 10033
+		name "Count"
+		links 10047 10120 
+node
+	type Operator
+	id 10046
+	name "+"
+	desc "+"
+	rect -951 1344 -809 1416
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		id 10047
+		name "A"
+		links 10033 
+	input
+		type Int
+		id 10048
+		name "B"
+		links 10052 
+	output
+		type Int
+		id 10049
+		name "O"
+		links 10044 
+node
+	type Variable
+	id 10051
+	name "Int"
+	desc "Int"
+	rect -1112 1392 -999 1436
+	color 1 1 1 1
+	output
+		type Int
+		id 10052
+		name "Inc1"
+		links 10048 
+node
+	type Operator
+	id 10119
+	name "<"
+	desc "Int"
+	rect -1368 1184 -1227 1256
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Int
+		id 10120
+		name "A"
+		links 10033 
+	input
+		type Int
+		id 10121
+		name "B"
+		links 10126 
+	output
+		type Bool
+		id 10122
+		name "O"
+		links 10129 
+node
+	type Variable
+	id 10125
+	name "Int"
+	desc "Int"
+	rect -1543 1260 -1432 1304
+	color 1 1 1 1
+	output
+		type Int
+		id 10126
+		name "100"
+		links 10121 
+node
+	type Function
+	id 10042
+	name "Set"
+	desc "Int-10032"
+	rect -744 1200 -598 1304
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		id 10043
+		name " "
+		links 10131 
+	input
+		type Int
+		id 10044
+		name "Count"
+		links 10049 
+	output
+		type Flow
+		id 10045
+		name " "
+		links 10145 
+node
+	type Function
+	id 10062
+	name "Print String"
+	desc "Print String"
+	rect -696 960 -537 1064
+	color 1 1 1 1
+	input
+		type Flow
+		id 10063
+		name " "
+		links 10130 
+	input
+		type String
+		id 10064
+		name "In String"
+		links 10068 
+	output
+		type Flow
+		id 10065
+		name " "
+		links 
+node
+	type Variable
+	id 10067
+	name "String"
+	desc "String"
+	rect -975 1036 -736 1080
+	color 1 1 1 1
+	output
+		type String
+		id 10068
+		name "String2"
+		links 10064 
+node
+	type Function
+	id 10094
+	name "Set"
+	desc "Bool-10030"
+	rect -1544 1468 -1373 1572
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		id 10095
+		name " "
+		links 10027 
+	input
+		type Bool
+		id 10096
+		name "CloseLoop"
+		links 10031 
+	output
+		type Flow
+		id 10097
+		name " "
+		links 
+symbol
+	id 10031
+	value 0
+symbol
+	id 10033
+	value 0
+symbol
+	id 10052
+	value 1
+symbol
+	id 10068
+	value "Finish"
+symbol
+	id 10126
+	value 100
+symbol
+	id 10150
+	value "Loop Print"
