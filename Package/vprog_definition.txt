@@ -133,6 +133,29 @@ node
 		name "Exit"
 node
 	type Control
+	name "For Loop"
+	rect -360 336 -119 440
+	color 1 1 1 1
+	input
+		type Flow
+		name " "
+	input
+		type Int
+		name "First Index"
+	input
+		type Int
+		name "Last Index"
+	output
+		type Flow
+		name "Loop"
+	output
+		type Int
+		name "Index"
+	output
+		type Flow
+		name "Exit"		
+node
+	type Control
 	name "Do N"
 	rect -323 500 -136 632
 	color 1 1 1 1
