@@ -1,0 +1,242 @@
+node
+	type Event
+	id 10132
+	name "SeqWork Event"
+	desc "SeqWork Event"
+	rect -1917 1024 -1784 1268
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10133
+		name " "
+		links 10196 
+	output
+		type String
+		id 10134
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10135
+		name "Loading"
+		links 
+	output
+		type Int
+		id 10136
+		name "l Layer"
+		links 
+	output
+		type Int
+		id 10137
+		name "Picking"
+		links 
+	output
+		type Int
+		id 10138
+		name "Unloading"
+		links 
+	output
+		type Int
+		id 10139
+		name "u Layer"
+		links 
+node
+	type Function
+	id 10144
+	name "Print String"
+	desc "Print String"
+	rect -968 1020 -809 1124
+	color 1 1 1 1
+	input
+		type Flow
+		id 10145
+		name " "
+		links 10199 
+	input
+		type String
+		id 10146
+		name "In String"
+		links 10150 
+	output
+		type Flow
+		id 10147
+		name " "
+		links 
+node
+	type Variable
+	id 10149
+	name "String"
+	desc "String"
+	rect -1248 1116 -1017 1160
+	color 1 1 1 1
+	output
+		type String
+		id 10150
+		name "String"
+		links 10146 
+node
+	type Event
+	id 10026
+	name "Dest Event"
+	desc "Dest Event"
+	rect -1932 1396 -1800 1528
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10027
+		name " "
+		links 10095 
+	output
+		type String
+		id 10028
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10029
+		name "Dest"
+		links 
+node
+	type Variable
+	id 10030
+	name "Bool"
+	desc "Bool"
+	rect -1726 1548 -1576 1592
+	color 1 1 1 1
+	output
+		type Bool
+		id 10031
+		name "CloseLoop"
+		links 10096 
+node
+	type Variable
+	id 10125
+	name "Int"
+	desc "Int"
+	rect -1679 1228 -1576 1272
+	color 1 1 1 1
+	output
+		type Int
+		id 10126
+		name "10"
+		links 10198 
+node
+	type Function
+	id 10062
+	name "Print String"
+	desc "Print String"
+	rect -967 1280 -808 1384
+	color 1 1 1 1
+	input
+		type Flow
+		id 10063
+		name " "
+		links 10201 
+	input
+		type String
+		id 10064
+		name "In String"
+		links 10068 
+	output
+		type Flow
+		id 10065
+		name " "
+		links 
+node
+	type Variable
+	id 10067
+	name "String"
+	desc "String"
+	rect -1246 1356 -1007 1400
+	color 1 1 1 1
+	output
+		type String
+		id 10068
+		name "String2"
+		links 10064 
+node
+	type Function
+	id 10094
+	name "Set"
+	desc "Bool-10030"
+	rect -1544 1468 -1373 1572
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		id 10095
+		name " "
+		links 10027 
+	input
+		type Bool
+		id 10096
+		name "CloseLoop"
+		links 10031 
+	output
+		type Flow
+		id 10097
+		name " "
+		links 
+node
+	type Variable
+	id 10156
+	name "Int"
+	desc "Int"
+	rect -1671 1180 -1576 1224
+	color 1 1 1 1
+	output
+		type Int
+		id 10157
+		name "0"
+		links 10197 
+node
+	type Control
+	id 10195
+	name "For Loop"
+	desc "For Loop"
+	rect -1519 1088 -1320 1220
+	color 1 1 1 1
+	input
+		type Flow
+		id 10196
+		name " "
+		links 10133 
+	input
+		type Int
+		id 10197
+		name "First Index"
+		links 10157 
+	input
+		type Int
+		id 10198
+		name "Last Index"
+		links 10126 
+	output
+		type Flow
+		id 10199
+		name "Loop"
+		links 10145 
+	output
+		type Int
+		id 10200
+		name "Index"
+		links 
+	output
+		type Flow
+		id 10201
+		name "Exit"
+		links 10063 
+symbol
+	id 10031
+	value 0
+symbol
+	id 10068
+	value "Finish"
+symbol
+	id 10126
+	value 10
+symbol
+	id 10150
+	value "Loop"
+symbol
+	id 10157
+	value 0
