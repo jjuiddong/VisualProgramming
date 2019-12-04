@@ -1,3 +1,42 @@
+define
+	type Enum
+	name "SequenceType"
+	attr
+		name "Move"
+		value 0
+	attr
+		name "Loading"
+		value 1
+	attr
+		name "Unloading"
+		value 2
+	attr
+		name "Picking"
+		value 3
+	attr
+		name "Finish"
+		value 4
+define
+	type Enum
+	name "WorkType"
+	attr
+		name "Move"
+		value 0		
+	attr
+		name "Loading"
+		value 1
+	attr
+		name "Unloading"
+		value 2
+	attr
+		name "Picking"
+		value 3
+	attr
+		name "Dest"
+		value 4		
+	attr
+		name "Charge"
+		value 5
 node
 	type Event
 	name "InputAction Fire"
@@ -86,6 +125,46 @@ node
 	output
 		type Int
 		name "Result"
+node
+	type Event
+	name "AckLoading Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+	output
+		type Int
+		name "Result"
+node
+	type Event
+	name "AckEndLoading Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+	output
+		type Int
+		name "Result"		
 node
 	type Control
 	name "Branch"
@@ -198,10 +277,105 @@ node
 		type Bool
 		name "Work"
 node
+	type Macro
+	name "IsRobotMove"
+	rect 71 80 280 184
+	color 1 1 1 1
+	input
+		type String
+		name "Robot Name"
+	output
+		type Bool
+		name "Work"
+node
+	type Function
+	name "GetNextJob"
+	rect 71 80 280 184
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	output
+		type Flow
+		name " "
+	output
+		type WorkType
+		name "WorkType"
+	output
+		type Int
+		name "Dest"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+	output
+		type Int
+		name "Charge"
+	output
+		type Bool
+		name "Result"
+node
+	type Function
+	name "SetJob_SeqWork"
+	rect 71 80 280 184
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	input
+		type Int
+		name "Loading"
+	input
+		type Int
+		name "l Layer"
+	input
+		type Int
+		name "Picking"
+	input
+		type Int
+		name "Unloading"
+	input
+		type Int
+		name "u Layer"
+	output
+		type Flow
+		name " "
+	output
+		type Bool
+		name "Result"
+node
+	type Function
+	name "SetJob_Move"
+	rect 71 80 280 184
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	input
+		type Int
+		name "Dest"
+	output
+		type Flow
+		name " "
+	output
+		type Bool
+		name "Result"
+node
 	type Function
 	name "SetRobotWork"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -213,9 +387,23 @@ node
 		name " "
 node
 	type Function
+	name "SetRobotMove"
+	rect 71 80 280 184
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"
+	output
+		type Flow
+		name " "		
+node
+	type Function
 	name "SetRobotReady"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -229,7 +417,7 @@ node
 	type Function
 	name "ReqMove"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -252,7 +440,7 @@ node
 	type Function
 	name "ReqGuideMove"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -278,7 +466,7 @@ node
 	type Function
 	name "ReqLoading"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -296,18 +484,18 @@ node
 		name " "
 	output
 		type Int
-		name "Result"
-	output
-		type Int
 		name "Station"		
 	output
 		type Int
 		name "Layer"
+	output
+		type Int
+		name "Result"
 node
 	type Function
 	name "ReqUnloading"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -325,18 +513,18 @@ node
 		name " "
 	output
 		type Int
-		name "Result"
-	output
-		type Int
 		name "Station"
 	output
 		type Int
 		name "Layer"
+	output
+		type Int
+		name "Result"
 node
 	type Function
 	name "ErrorState"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -353,7 +541,7 @@ node
 	type Function
 	name "OutputAction"
 	rect 71 80 280 184
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Float
 		name "Sample"
@@ -690,7 +878,7 @@ node
 	type Function
 	name "Print String"
 	rect -69 652 78 756
-	color 1 1 1 1
+	color 0.501961 0.764706 0.972549 1
 	input
 		type Flow
 		name " "
@@ -732,24 +920,6 @@ node
 	output
 		type String
 		name "String"
-define
-	type Enum
-	name "SequenceType"
-	attr
-		name "Move"
-		value 0
-	attr
-		name "Loading"
-		value 1
-	attr
-		name "Unloading"
-		value 2
-	attr
-		name "Picking"
-		value 3
-	attr
-		name "Finish"
-		value 4
 node
 	type Variable
 	name "SequenceType"
@@ -758,3 +928,11 @@ node
 	output
 		type SequenceType
 		name "SequenceType"
+node
+	type Variable
+	name "WorkType"
+	rect 0 0 100 50
+	color 1 1 1 1
+	output
+		type WorkType
+		name "WorkType"

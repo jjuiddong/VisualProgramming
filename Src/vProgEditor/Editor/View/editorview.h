@@ -21,7 +21,5 @@ protected:
 	void RenderBlueprint();
 	bool ReadFileDialog();
 	bool WriteFileDialog();
-
-
-public:
+	bool SaveAsFileDialog();
 };

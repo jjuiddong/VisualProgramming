@@ -1,0 +1,286 @@
+node
+	type Event
+	id 10132
+	name "SeqWork Event"
+	desc "SeqWork Event"
+	rect -1917 1024 -1784 1268
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10133
+		name " "
+		links 10035 
+	output
+		type String
+		id 10134
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10135
+		name "Loading"
+		links 
+	output
+		type Int
+		id 10136
+		name "l Layer"
+		links 
+	output
+		type Int
+		id 10137
+		name "Picking"
+		links 
+	output
+		type Int
+		id 10138
+		name "Unloading"
+		links 
+	output
+		type Int
+		id 10139
+		name "u Layer"
+		links 
+node
+	type Function
+	id 10144
+	name "Print String"
+	desc "Print String"
+	rect -968 832 -809 936
+	color 1 1 1 1
+	input
+		type Flow
+		id 10145
+		name " "
+		links 10036 
+	input
+		type String
+		id 10146
+		name "In String"
+		links 10150 
+	output
+		type Flow
+		id 10147
+		name " "
+		links 
+node
+	type Variable
+	id 10149
+	name "String"
+	desc "String"
+	rect -1255 908 -1016 952
+	color 1 1 1 1
+	output
+		type String
+		id 10150
+		name "String1"
+		links 10146 
+node
+	type Event
+	id 10026
+	name "Dest Event"
+	desc "Dest Event"
+	rect -1916 1444 -1784 1576
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		id 10027
+		name " "
+		links 
+	output
+		type String
+		id 10028
+		name "Robot Name"
+		links 
+	output
+		type Int
+		id 10029
+		name "Dest"
+		links 
+node
+	type Function
+	id 10062
+	name "Print String"
+	desc "Print String"
+	rect -967 976 -808 1080
+	color 1 1 1 1
+	input
+		type Flow
+		id 10063
+		name " "
+		links 10038 
+	input
+		type String
+		id 10064
+		name "In String"
+		links 10068 
+	output
+		type Flow
+		id 10065
+		name " "
+		links 
+node
+	type Variable
+	id 10067
+	name "String"
+	desc "String"
+	rect -1255 1052 -1016 1096
+	color 1 1 1 1
+	output
+		type String
+		id 10068
+		name "String2"
+		links 10064 
+node
+	type Control
+	id 10034
+	name "Sequence"
+	desc "Sequence"
+	rect -1582 1052 -1432 1265
+	color 1 1 1 1
+	input
+		type Flow
+		id 10035
+		name " "
+		links 10133 
+	output
+		type Flow
+		id 10036
+		name "Then 0"
+		links 10145 
+	output
+		type Flow
+		id 10038
+		name "Then 1"
+		links 10063 
+	output
+		type Flow
+		id 10039
+		name "Then 2"
+		links 10043 
+	output
+		type Flow
+		id 10040
+		name "Then 3"
+		links 10047 
+	output
+		type Flow
+		id 10041
+		name "Then 4"
+		links 10051 
+node
+	type Function
+	id 10042
+	name "Print String"
+	desc "Print String"
+	rect -968 1116 -809 1220
+	color 1 1 1 1
+	input
+		type Flow
+		id 10043
+		name " "
+		links 10039 
+	input
+		type String
+		id 10044
+		name "In String"
+		links 10055 
+	output
+		type Flow
+		id 10045
+		name " "
+		links 
+node
+	type Function
+	id 10046
+	name "Print String"
+	desc "Print String"
+	rect -968 1260 -809 1364
+	color 1 1 1 1
+	input
+		type Flow
+		id 10047
+		name " "
+		links 10040 
+	input
+		type String
+		id 10048
+		name "In String"
+		links 10059 
+	output
+		type Flow
+		id 10049
+		name " "
+		links 
+node
+	type Function
+	id 10050
+	name "Print String"
+	desc "Print String"
+	rect -968 1392 -809 1496
+	color 1 1 1 1
+	input
+		type Flow
+		id 10051
+		name " "
+		links 10041 
+	input
+		type String
+		id 10052
+		name "In String"
+		links 10066 
+	output
+		type Flow
+		id 10053
+		name " "
+		links 
+node
+	type Variable
+	id 10054
+	name "String"
+	desc "String"
+	rect -1255 1180 -1016 1224
+	color 1 1 1 1
+	output
+		type String
+		id 10055
+		name "String3"
+		links 10044 
+node
+	type Variable
+	id 10058
+	name "String"
+	desc "String"
+	rect -1255 1308 -1016 1352
+	color 1 1 1 1
+	output
+		type String
+		id 10059
+		name "String4"
+		links 10048 
+node
+	type Variable
+	id 10061
+	name "String"
+	desc "String"
+	rect -1255 1452 -1016 1496
+	color 1 1 1 1
+	output
+		type String
+		id 10066
+		name "String5"
+		links 10052 
+symbol
+	id 10055
+	value "Sequence3"
+symbol
+	id 10059
+	value "Sequence4"
+symbol
+	id 10066
+	value "Sequence5"
+symbol
+	id 10068
+	value "Sequence2"
+symbol
+	id 10150
+	value "Sequence1"

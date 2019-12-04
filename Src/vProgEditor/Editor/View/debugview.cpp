@@ -554,17 +554,24 @@ int cDebugView::Function(common::script::cSymbolTable &symbolTable
 		symbolTable.Set(scopeName, "Work", variant_t((bool)1));
 		common::clearvariant(node);
 	}
+	else if (funcName == "IsRobotMove")
+	{
+		variant_t node;
+		symbolTable.Get(scopeName, "Robot Name", node);
+		symbolTable.Set(scopeName, "Move", variant_t((bool)1));
+		common::clearvariant(node);
+	}
 	else if (funcName == "ReqMove")
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((int)0));
 	}
 	else if (funcName == "ReqLoading")
 	{
-		int a = 0;
+		symbolTable.Set(scopeName, "Result", variant_t((int)0));
 	}
 	else if (funcName == "ReqUnloading")
 	{
-		int a = 0;
+		symbolTable.Set(scopeName, "Result", variant_t((int)0));
 	}
 	else if (funcName == "ErrorState")
 	{

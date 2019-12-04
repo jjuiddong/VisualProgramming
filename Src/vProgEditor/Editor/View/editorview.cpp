@@ -32,6 +32,17 @@ void cEditorView::OnUpdate(const float deltaSeconds)
 
 void cEditorView::OnRender(const float deltaSeconds)
 {
+	if (ImGui::Button("New"))
+	{
+		if (IDYES == ::MessageBoxA(m_owner->getSystemHandle()
+			, "Clear Node Data?", "CONFIRM", MB_YESNO | MB_ICONWARNING))
+		{
+			g_global->m_editMgr.Clear();
+			g_global->m_codeView->ClearCode();
+		}
+	}
+
+	ImGui::SameLine();
 	if (ImGui::Button("Open"))
 	{
 		ReadFileDialog();
@@ -41,6 +52,12 @@ void cEditorView::OnRender(const float deltaSeconds)
 	if (ImGui::Button("Save"))
 	{
 		WriteFileDialog();
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("SaveAs"))
+	{
+		SaveAsFileDialog();
 	}
 
 	ImGui::SameLine();
@@ -209,6 +226,31 @@ bool cEditorView::ReadFileDialog()
 
 
 bool cEditorView::WriteFileDialog()
+{
+	if (g_global->m_editMgr.m_fileName.empty())
+	{
+		::MessageBoxA(m_owner->getSystemHandle()
+			, "Error!! Not Found FileName", "ERR", MB_OK | MB_ICONERROR);
+	}
+	else
+	{
+		StrPath fileName = g_global->m_editMgr.m_fileName;
+		if (g_global->m_editMgr.Write(fileName))
+		{
+			::MessageBoxA(m_owner->getSystemHandle()
+				, "Success Save File", "CONFIRM", MB_OK | MB_ICONINFORMATION);
+		}
+		else
+		{
+			::MessageBoxA(m_owner->getSystemHandle()
+				, "Error!! Save File", "ERR", MB_OK | MB_ICONERROR);
+		}
+	}
+	return false;
+}
+
+
+bool cEditorView::SaveAsFileDialog()
 {
 	const StrPath path = common::SaveFileDialog(m_owner->getSystemHandle()
 		, { {L"VProg File (*.vprog)", L"*.vprog"}

@@ -34,9 +34,9 @@ void cVProgView::OnRender(const float deltaSeconds)
 	}
 
 	RenderDefinition("Event List", vprog::eNodeType::Event);
-	RenderDefinition("Control List", vprog::eNodeType::Control);
-	RenderDefinition("Macro List", vprog::eNodeType::Macro);
 	RenderDefinition("Function List", vprog::eNodeType::Function);
+	RenderDefinition("Macro List", vprog::eNodeType::Macro);
+	RenderDefinition("Control List", vprog::eNodeType::Control);
 	//RenderDefinition("Operator List", vprog::eNodeType::Operator);
 	RenderOperatorList();
 	RenderDefinition("Variable List", vprog::eNodeType::Variable);
