@@ -565,6 +565,17 @@ int cDebugView::Function(common::script::cSymbolTable &symbolTable
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((int)0));
 	}
+	else if ((funcName == "SetJob_SeqWork")
+		|| (funcName == "SetJob_Move")
+		)
+	{
+		symbolTable.Set(scopeName, "Result", variant_t((bool)true));
+	}
+	else if ((funcName == "GetNextJob")
+		)
+	{
+		symbolTable.Set(scopeName, "Result", variant_t((bool)false));
+	}
 	else if (funcName == "ReqLoading")
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((int)0));
