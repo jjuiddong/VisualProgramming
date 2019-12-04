@@ -25,3 +25,7 @@ While
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-11-27-1.jpg?raw=true)
 For-Loop
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-03-1.jpg?raw=true)
+Sequence
+![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-04-1.jpg?raw=true)
+Edit View
+![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-04-2.jpg?raw=true)
