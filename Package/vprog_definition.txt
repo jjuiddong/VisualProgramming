@@ -153,27 +153,17 @@ node
 		name "Index"
 	output
 		type Flow
-		name "Exit"		
+		name "Exit"
 node
 	type Control
-	name "Do N"
-	rect -323 500 -136 632
+	name "Sequence"
 	color 1 1 1 1
 	input
 		type Flow
-		name "Enter"
-	input
-		type Int
-		name "N"
-	input
-		type Flow
-		name "Reset"
+		name " "
 	output
 		type Flow
-		name "Exit"
-	output
-		type Int
-		name "Counter"
+		name "Then 0"
 node
 	type Macro
 	name "GetFrontNode"
