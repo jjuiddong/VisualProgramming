@@ -28,4 +28,4 @@ For-Loop
 Sequence
 ![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-04-1.jpg?raw=true)
 Edit View
-![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-04-2.jpg?raw=true)
+![](https://github.com/jjuiddong/VisualProgramming/blob/master/Doc/2019-12-05-1.jpg?raw=true)
