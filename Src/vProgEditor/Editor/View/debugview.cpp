@@ -565,7 +565,7 @@ int cDebugView::Function(common::script::cSymbolTable &symbolTable
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((int)0));
 	}
-	else if ((funcName == "SetJob_SeqWork")
+	else if ((funcName == "SetJob_Seqwork")
 		|| (funcName == "SetJob_Move")
 		)
 	{

@@ -53,7 +53,7 @@ node
 		name "Released"
 node
 	type Event
-	name "SeqWork Event"
+	name "Seqwork Event"
 	rect -253 208 -72 312
 	color 1 0.501961 0.501961 1
 	output
@@ -164,7 +164,47 @@ node
 		name "Layer"
 	output
 		type Int
-		name "Result"		
+		name "Result"
+node
+	type Event
+	name "AckUnloading Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+	output
+		type Int
+		name "Result"
+node
+	type Event
+	name "AckEndUnloading Event"
+	rect -253 208 -72 312
+	color 1 0.501961 0.501961 1
+	output
+		type Flow
+		name " "
+	output
+		type String
+		name "Robot Name"
+	output
+		type Int
+		name "Station"
+	output
+		type Int
+		name "Layer"
+	output
+		type Int
+		name "Result"				
 node
 	type Control
 	name "Branch"
@@ -286,10 +326,24 @@ node
 		name "Robot Name"
 	output
 		type Bool
-		name "Work"
+		name "Move"
 node
 	type Function
-	name "GetNextJob"
+	name "NextWork"
+	rect 71 80 280 184
+	color 0.501961 0.764706 0.972549 1
+	input
+		type Flow
+		name " "
+	input
+		type String
+		name "Robot Name"		
+	output
+		type Flow
+		name " "		
+node
+	type Function
+	name "GetCurrentWork"
 	rect 71 80 280 184
 	color 0.501961 0.764706 0.972549 1
 	input
@@ -321,7 +375,7 @@ node
 		name "Result"
 node
 	type Function
-	name "SetJob_SeqWork"
+	name "SetJob_Seqwork"
 	rect 71 80 280 184
 	color 0.501961 0.764706 0.972549 1
 	input
