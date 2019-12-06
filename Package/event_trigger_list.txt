@@ -1,58 +1,58 @@
 
 
 event_trigger
-	name "SeqWork Event"
-	eventname "SeqWork Event"
+	name "Seqwork Event"
+	eventname "Seqwork Event"
 	input
-		name "SeqWork Event::Robot Name"
+		name "Seqwork Event::Robot Name"
 		type String
 		value "robot1"
 	input
-		name "SeqWork Event::Loading"
+		name "Seqwork Event::Loading"
 		type Int
 		value 0
 	input
-		name "SeqWork Event::l Layer"
+		name "Seqwork Event::l Layer"
 		type Int
 		value 0
 	input
-		name "SeqWork Event::Picking"
+		name "Seqwork Event::Picking"
 		type Int
 		value 0
 	input
-		name "SeqWork Event::Unloading"
+		name "Seqwork Event::Unloading"
 		type Int
 		value 0
 	input
-		name "SeqWork Event::u Layer"
+		name "Seqwork Event::u Layer"
 		type Int
 		value 0
 
 event_trigger
-	name "SeqWork Event2"
-	eventname "SeqWork Event"
+	name "Seqwork Event2"
+	eventname "Seqwork Event"
 	input
-		name "SeqWork Event::Robot Name"
+		name "Seqwork Event::Robot Name"
 		type String
 		value "robot1"	
 	input
-		name "SeqWork Event::Loading"
+		name "Seqwork Event::Loading"
 		type Int
 		value 10
 	input
-		name "SeqWork Event::l Layer"
+		name "Seqwork Event::l Layer"
 		type Int
 		value 1
 	input
-		name "SeqWork Event::Picking"
+		name "Seqwork Event::Picking"
 		type Int
 		value 0
 	input
-		name "SeqWork Event::Unloading"
+		name "Seqwork Event::Unloading"
 		type Int
 		value 20
 	input
-		name "SeqWork Event::u Layer"
+		name "Seqwork Event::u Layer"
 		type Int
 		value 1
 

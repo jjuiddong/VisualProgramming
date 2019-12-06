@@ -246,7 +246,7 @@ void cDebugView::RenderLocalDebugging()
 		} //~if isload?
 
 		if (!m_remoteDebugger.IsRun()
-			&& m_debugger.IsLoad())
+			&& m_debugger.IsRun())
 		{
 			ImGui::SameLine();
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.1f, 0.1f, 1));
@@ -571,7 +571,7 @@ int cDebugView::Function(common::script::cSymbolTable &symbolTable
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((bool)true));
 	}
-	else if ((funcName == "GetNextJob")
+	else if ((funcName == "GetCurrentWork")
 		)
 	{
 		symbolTable.Set(scopeName, "Result", variant_t((bool)false));

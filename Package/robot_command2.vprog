@@ -24,7 +24,7 @@ node
 	id 10414
 	name "Seqwork Event"
 	desc "Seqwork Event"
-	rect -100 -39 33 205
+	rect -100 -39 32 205
 	color 1 0.501961 0.501961 1
 	output
 		type Flow
@@ -1533,7 +1533,7 @@ node
 	id 10515
 	name "IsRobotMove"
 	desc "IsRobotMove"
-	rect 99 2908 312 2984
+	rect 99 2908 313 2984
 	color 1 1 1 1
 	input
 		type String
@@ -1677,36 +1677,58 @@ node
 		id 10583
 		name " "
 		links 10563 
-symbol
-	id 10281
-	value "Robot1"
-symbol
-	id 10312
-	value "Robot State Error"
-symbol
-	id 10362
-	value "Robot State Error"
-symbol
-	id 10453
-	value "Robot Busy"
-symbol
-	id 10473
-	value "Set SeqWork Error"
-symbol
-	id 10592
-	value "Nothing to Work"
-symbol
-	id 10621
+initvar
+	scopename Int-10620
+	name 0
 	value 0
-symbol
-	id 10675
+	type Int
+initvar
+	scopename String-10280
+	name RobotName
+	value "Robot1"
+	type String
+initvar
+	scopename String-10311
+	name errMsg10
 	value "Robot State Error"
-symbol
-	id 10826
+	type String
+initvar
+	scopename String-10361
+	name errMsg5
+	value "Robot State Error"
+	type String
+initvar
+	scopename String-10452
+	name errMsg4
+	value "Robot Busy"
+	type String
+initvar
+	scopename String-10472
+	name errMsg9
+	value "Set SeqWork Error"
+	type String
+initvar
+	scopename String-10591
+	name errMsg2
+	value "Nothing to Work"
+	type String
+initvar
+	scopename String-10674
+	name errMsg6
+	value "Robot State Error"
+	type String
+initvar
+	scopename String-10825
+	name errMsg3
 	value "Request Error"
-symbol
-	id 10886
+	type String
+initvar
+	scopename String-10885
+	name errMsg7
 	value "Set Move Error"
-symbol
-	id 11343
+	type String
+initvar
+	scopename String-11342
+	name errMsg8
 	value "Robot State Error"
+	type String
