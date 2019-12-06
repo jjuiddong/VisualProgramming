@@ -149,13 +149,13 @@ void cVProgView::RenderSymbolTable()
 		// change variable name
 		vector<std::pair<ed::PinId, StrId>> chvars; //pin -> next var
 
-		for (auto &kv : editMgr.m_symbTable2.m_vars)
+		for (auto &kv : editMgr.m_symbTable.m_vars)
 		{
 			const string &scopeName = kv.first;
 			for (auto &kv2 : kv.second)
 			{
 				common::script::cSymbolTable::sVar *varInfo = 
-					editMgr.m_symbTable2.FindVarInfo(scopeName, kv2.first);
+					editMgr.m_symbTable.FindVarInfo(scopeName, kv2.first);
 				if (!varInfo)
 					continue;
 				vprog::sPin *pin = editMgr.FindPin(scopeName, kv2.first);
@@ -228,10 +228,10 @@ void cVProgView::RenderSymbolTable()
 				continue;
 
 			auto v = *varInfo;
-			editMgr.m_symbTable2.RemoveVar(scopeName, pin->name.c_str());
+			editMgr.m_symbTable.RemoveVar(scopeName, pin->name.c_str());
 
 			pin->name = ch.second.c_str(); // change name
-			editMgr.m_symbTable2.Set(scopeName, pin->name.c_str()
+			editMgr.m_symbTable.Set(scopeName, pin->name.c_str()
 				, v.var, v.type);
 		}
 	}
