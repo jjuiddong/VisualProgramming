@@ -146,53 +146,93 @@ void cVProgView::RenderSymbolTable()
 	ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
 	if (ImGui::CollapsingHeader("Symbol Table"))
 	{
-		for (auto &kv : editMgr.m_symbTable.m_vars)
+		// change variable name
+		vector<std::pair<ed::PinId, StrId>> chvars; //pin -> next var
+
+		for (auto &kv : editMgr.m_symbTable2.m_vars)
 		{
-			const ed::PinId pid = kv.first;
-			vprog::cSymbolTable::sValue &value = kv.second;
-			variant_t &var = value.var;
-			vprog::cNode *node = editMgr.FindContainNode(pid);
-			if (!node)
-				continue; // error occurred
-			vprog::sPin *pin = editMgr.FindPin(pid);
-			if (!pin)
-				continue; // error occurred
-			if (node->m_type != vprog::eNodeType::Variable)
-				continue; // error occurred
-			if (node->m_outputs.empty())
-				continue; // error occurred
-
-			StrId treeId;
-			treeId.Format("(%d)", node->m_id.Get());
-			if (ImGui::TreeNodeEx(treeId.c_str(), 0, pin->name.c_str()))
+			const string &scopeName = kv.first;
+			for (auto &kv2 : kv.second)
 			{
-				ImGui::InputText("##varname", pin->name.m_str, pin->name.SIZE);
+				common::script::cSymbolTable::sVar *varInfo = 
+					editMgr.m_symbTable2.FindVarInfo(scopeName, kv2.first);
+				if (!varInfo)
+					continue;
+				vprog::sPin *pin = editMgr.FindPin(scopeName, kv2.first);
+				if (!pin)
+					continue; // error occurred
+				vprog::cNode *node = editMgr.FindContainNode(pin->id);
+				if (!node)
+					continue; // error occurred
+				if (node->m_type != vprog::eNodeType::Variable)
+					continue; // error occurred
+				if (node->m_outputs.empty())
+					continue; // error occurred
 
-				switch (pin->type)
+				variant_t &var = varInfo->var;
+				StrId treeId;
+				treeId.Format("(%d)", node->m_id.Get());
+				if (ImGui::TreeNodeEx(treeId.c_str(), 0, pin->name.c_str()))
 				{
-				case vprog::ePinType::Bool:
-				{
-					const char *comboStr = "False\0True\0\0";
-					ImGui::Combo("##var", (int*)&var.boolVal, comboStr);
-				}
-				break;
-				case vprog::ePinType::Int:
-					ImGui::InputInt("##var", &var.intVal);
+					common::StrId name = pin->name;
+					//ImGui::InputText("##varname", pin->name.m_str, pin->name.SIZE);
+					if (ImGui::InputText("##varname", name.m_str, name.SIZE))
+					{
+						// change variable name
+						chvars.push_back({ pin->id, name });
+					}
+
+					switch (pin->type)
+					{
+					case vprog::ePinType::Bool:
+					{
+						const char *comboStr = "False\0True\0\0";
+						ImGui::Combo("##var", (int*)&var.boolVal, comboStr);
+					}
 					break;
-				case vprog::ePinType::Float:
-					ImGui::InputFloat("##var", &var.fltVal);
+					case vprog::ePinType::Int:
+						ImGui::InputInt("##var", &var.intVal);
+						break;
+					case vprog::ePinType::Float:
+						ImGui::InputFloat("##var", &var.fltVal);
+						break;
+					case vprog::ePinType::String:
+					{
+						common::Str128 tmpStr = common::variant2str(var);
+						if (ImGui::InputText("##varstring", tmpStr.m_str, tmpStr.SIZE))
+						{
+							common::clearvariant(var);
+							var = common::str2variant(VT_BSTR, tmpStr.c_str());
+						}
+					}
 					break;
-				case vprog::ePinType::String:
-				{
-					common::Str128 tmpStr = value.str;
-					if (ImGui::InputText("##varstring", tmpStr.m_str, tmpStr.SIZE))
-						value.str = tmpStr.c_str();
+					}
+					ImGui::TreePop();
 				}
-				break;
-				}
-				ImGui::TreePop();
-			}
-		}
+			} //~values
+		} //~vars
 		ImGui::Spacing();
+
+		// change variable information
+		for (auto &ch : chvars)
+		{
+			const ed::PinId id = ch.first;
+			vprog::sPin *pin = editMgr.FindPin(id);
+			if (!pin)
+				continue;
+			common::script::cSymbolTable::sVar *varInfo = editMgr.FindVarInfo(id);
+			if (!varInfo)
+				continue;
+			const string scopeName = editMgr.GetScopeName(id);
+			if (scopeName.empty())
+				continue;
+
+			auto v = *varInfo;
+			editMgr.m_symbTable2.RemoveVar(scopeName, pin->name.c_str());
+
+			pin->name = ch.second.c_str(); // change name
+			editMgr.m_symbTable2.Set(scopeName, pin->name.c_str()
+				, v.var, v.type);
+		}
 	}
 }
