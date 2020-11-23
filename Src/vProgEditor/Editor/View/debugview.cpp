@@ -53,6 +53,7 @@ cDebugView::~cDebugView()
 bool cDebugView::Init(graphic::cRenderer &renderer)
 {
 	ReadEventTriggerListFile("event_trigger_list.txt");
+	m_interpreter.Init(this, this);
 
 	return true;
 }
@@ -222,7 +223,7 @@ void cDebugView::RenderLocalDebugging()
 					m_debugger.Clear();
 					m_interpreter.Clear();
 
-					if (!m_interpreter.Init(icodeFileName, this, this))
+					if (!m_interpreter.ReadIntermediateCode(icodeFileName))
 					{
 						::MessageBoxA(m_owner->getSystemHandle()
 							, "Error!! Read IntermediateCode", "ERROR"
@@ -507,7 +508,7 @@ bool cDebugView::UpdateInformation(remotedbg::UpdateInformation_Packet &packet)
 	m_debugger.Clear();
 	m_interpreter.Clear();
 
-	if (!m_interpreter.Init(icodeFileName, this, this))
+	if (!m_interpreter.ReadIntermediateCode(icodeFileName))
 	{
 		//::MessageBoxA(m_owner->getSystemHandle()
 		//	, "Error!! Read IntermediateCode", "ERROR"

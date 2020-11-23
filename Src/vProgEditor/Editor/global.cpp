@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "global.h"
 #include "view/codeview.h"
+#include <shellapi.h>
 
 
 // 실행 인자값 두 번째 값을 리턴한다.
